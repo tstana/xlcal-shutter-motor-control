@@ -28,6 +28,7 @@ namespace xlcal_shutter_motor_control
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblShutterOpenPos = new System.Windows.Forms.Label();
             this.lblShutterClosedPos = new System.Windows.Forms.Label();
             this.lblOnOffTime = new System.Windows.Forms.Label();
@@ -38,6 +39,7 @@ namespace xlcal_shutter_motor_control
             this.btnSetShutterClosedPos = new System.Windows.Forms.Button();
             this.btnStartStopControl = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.timerShutterControl = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.spinboxShutterOpenPos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinboxShutterClosedPos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinboxOnOffTime)).BeginInit();
@@ -199,6 +201,11 @@ namespace xlcal_shutter_motor_control
             this.tableLayoutPanel1.Size = new System.Drawing.Size(509, 268);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
+            // timerShutterControl
+            // 
+            this.timerShutterControl.Interval = 1000;
+            this.timerShutterControl.Tick += new System.EventHandler(this.timerShutterControl_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,6 +237,7 @@ namespace xlcal_shutter_motor_control
         private System.Windows.Forms.Button btnSetShutterClosedPos;
         private System.Windows.Forms.Button btnStartStopControl;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Timer timerShutterControl;
     }
 }
 
