@@ -22,8 +22,10 @@ namespace xlcal_shutter_motor_control
         public MainForm()
         {
             InitializeComponent();
+
             labelComPortStatus.Text = "";
             labelShutterStatus.Text = "Shutter: ? / Ctrl: Off";
+
             port = new SerialPort();
             port.BaudRate = 9600;
         }
@@ -85,16 +87,43 @@ namespace xlcal_shutter_motor_control
 
         private void btnSetShutterOpenPos_Click(object sender, EventArgs e)
         {
+            if (!port.IsOpen)
+            {
+                MessageBox.Show("Please connect to motor driver board first!",
+                    "Serial port not open",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
             port.Write("/1A" + spinboxShutterOpenPos.Value.ToString() + "R\r");
         }
 
         private void btnSetShutterClosedPos_Click(object sender, EventArgs e)
         {
+            if (!port.IsOpen)
+            {
+                MessageBox.Show("Please connect to motor driver board first!",
+                    "Serial port not open",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
             port.Write("/1A" + spinboxShutterClosedPos.Value.ToString() + "R\r");
         }
 
         private void btnStartStopControl_Click(object sender, EventArgs e)
         {
+            if (!port.IsOpen)
+            {
+                MessageBox.Show("Please connect to motor driver board first!",
+                    "Serial port not open",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
             if (!timerShutterControl.Enabled)
             {
                 btnStartStopControl.Text = "Stop";
