@@ -97,33 +97,38 @@ namespace xlcal_shutter_motor_control
         {
             if (!timerShutterControl.Enabled)
             {
-                MessageBox.Show("Starting motor control for " +
-                    spinboxOnOffTime.Value.ToString() +
-                    ((spinboxOnOffTime.Value > 1) ? " minutes" : " minute") + ".");
                 btnStartStopControl.Text = "Stop";
                 timerShutterControl.Interval = (int)spinboxOnOffTime.Value * 60000;
                 timerShutterControl.Enabled = true;
             }
             else
             {
-                MessageBox.Show("Stopping motor control.");
                 btnStartStopControl.Text = "Start";
                 timerShutterControl.Enabled = false;
             }
+            SetShutterStatusLabel(shutterOpen, timerShutterControl.Enabled);
         }
 
         private void timerShutterControl_Tick(object sender, EventArgs e)
         {
             if (shutterOpen)
             {
-                MessageBox.Show("Closing: /1A" + spinboxShutterClosedPos.Value.ToString() + "R\r");
+                btnSetShutterClosedPos_Click(sender, e);
                 shutterOpen = false;
             }
             else
             {
-                MessageBox.Show("Opening: /1A" + spinboxShutterOpenPos.Value.ToString() + "R\r");
+                btnSetShutterOpenPos_Click(sender, e);
                 shutterOpen = true;
             }
+            SetShutterStatusLabel(shutterOpen, true);
+        }
+
+        private void SetShutterStatusLabel(bool shutterOpen, bool ctrlOn)
+        {
+            labelShutterStatus.Text =
+                "Shutter: " + (shutterOpen ? "On" : "Off") + " / " +
+                "Ctrl: " + (ctrlOn ? "On" : "Off");
         }
     }
 }
