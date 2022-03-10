@@ -79,6 +79,7 @@ namespace xlcal_shutter_motor_control
             this.btnSetShutterClosedPos.TabIndex = 12;
             this.btnSetShutterClosedPos.Text = "Set";
             this.btnSetShutterClosedPos.UseVisualStyleBackColor = true;
+            this.btnSetShutterClosedPos.Click += new System.EventHandler(this.btnSetShutterClosedPos_Click);
             // 
             // spinboxShutterOpenPos
             // 
@@ -109,6 +110,7 @@ namespace xlcal_shutter_motor_control
             this.btnSetShutterOpenPos.TabIndex = 13;
             this.btnSetShutterOpenPos.Text = "Set";
             this.btnSetShutterOpenPos.UseVisualStyleBackColor = true;
+            this.btnSetShutterOpenPos.Click += new System.EventHandler(this.btnSetShutterOpenPos_Click);
             // 
             // spinboxShutterClosedPos
             // 
@@ -201,6 +203,7 @@ namespace xlcal_shutter_motor_control
             this.cbComPort.Name = "cbComPort";
             this.cbComPort.Size = new System.Drawing.Size(124, 28);
             this.cbComPort.TabIndex = 16;
+            this.cbComPort.Click += new System.EventHandler(this.cbComPort_Click);
             // 
             // labelComPortStatus
             // 
@@ -232,6 +235,7 @@ namespace xlcal_shutter_motor_control
             this.btnOpenClosePort.TabIndex = 20;
             this.btnOpenClosePort.Text = "Open";
             this.btnOpenClosePort.UseVisualStyleBackColor = true;
+            this.btnOpenClosePort.Click += new System.EventHandler(this.btnOpenClosePort_Click);
             // 
             // btnStartStopControl
             // 
@@ -243,6 +247,7 @@ namespace xlcal_shutter_motor_control
             this.btnStartStopControl.TabIndex = 21;
             this.btnStartStopControl.Text = "Start";
             this.btnStartStopControl.UseVisualStyleBackColor = true;
+            this.btnStartStopControl.Click += new System.EventHandler(this.btnStartStopControl_Click);
             // 
             // lblOnOffTime
             // 

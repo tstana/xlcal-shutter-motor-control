@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO.Ports;
 
 // This is the code for your desktop app.
 // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
@@ -15,25 +16,81 @@ namespace xlcal_shutter_motor_control
 {
     public partial class MainForm : Form
     {
-        bool shutterOpen = false;
+        private SerialPort port;
+        private bool shutterOpen = false;
 
         public MainForm()
         {
             InitializeComponent();
             labelComPortStatus.Text = "";
             labelShutterStatus.Text = "Shutter: ? / Ctrl: Off";
+            port = new SerialPort();
+            port.BaudRate = 9600;
+        }
+
+        private void cbComPort_Click(object sender, EventArgs e)
+        {
+            cbComPort.Items.Clear();
+
+            string[] ports = SerialPort.GetPortNames();
+
+            foreach (string port in ports)
+                cbComPort.Items.Add(port);
+
+            if (cbComPort.Items.Count > 0)
+                cbComPort.SelectedIndex = 0;
+        }
+
+        private void btnOpenClosePort_Click(object sender, EventArgs e)
+        {
+            /* Handle open port and exit from function */
+            if (port.IsOpen)
+            {
+                port.Close();
+                labelComPortStatus.Text = "";
+                btnOpenClosePort.Text = "Open";
+                return;
+            }
+
+            try
+            {
+                port.PortName = cbComPort.Text;
+                port.Open();
+                labelComPortStatus.Font = new Font(
+                    labelComPortStatus.Font,
+                    FontStyle.Regular);
+                labelComPortStatus.Text = "Open @ 9600 baud.";
+                btnOpenClosePort.Text = "Close";
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show("Unable to open port! " +
+                    "Could it already be open in another app?",
+                    "Unauthorized Access Exception",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                labelComPortStatus.Font = new Font(
+                    labelComPortStatus.Font,
+                    FontStyle.Italic);
+                labelComPortStatus.Text = "Can't open port!";
+            }
+            catch (Exception excep)
+            {
+                MessageBox.Show(excep.Message,
+                    "Unexpected Exception",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void btnSetShutterOpenPos_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Open Position: " + Environment.NewLine + Environment.NewLine +
-                "/1A" + spinboxShutterOpenPos.Value.ToString() + "R\r");
+            port.Write("/1A" + spinboxShutterOpenPos.Value.ToString() + "R\r");
         }
 
         private void btnSetShutterClosedPos_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Closed Position: " + Environment.NewLine + Environment.NewLine +
-                "/1A" + spinboxShutterClosedPos.Value.ToString() + "R\r");
+            port.Write("/1A" + spinboxShutterClosedPos.Value.ToString() + "R\r");
         }
 
         private void btnStartStopControl_Click(object sender, EventArgs e)
