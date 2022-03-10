@@ -20,6 +20,8 @@ namespace xlcal_shutter_motor_control
         public MainForm()
         {
             InitializeComponent();
+            labelComPortStatus.Text = "";
+            labelShutterStatus.Text = "Shutter: ? / Ctrl: Off";
         }
 
         private void btnSetShutterOpenPos_Click(object sender, EventArgs e)
