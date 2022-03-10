@@ -42,9 +42,18 @@ namespace xlcal_shutter_motor_control
 
         private void btnOpenClosePort_Click(object sender, EventArgs e)
         {
-            /* Handle open port and exit from function */
+            /* Exit early from function if port is open: */
             if (port.IsOpen)
             {
+                if (timerShutterControl.Enabled)
+                {
+                    MessageBox.Show("Please stop shutter control before " +
+                        "closing serial port!",
+                        "Warning",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
                 port.Close();
                 labelComPortStatus.Text = "NoConn";
                 labelComPortStatus.BackColor = Color.Red;
@@ -52,6 +61,7 @@ namespace xlcal_shutter_motor_control
                 return;
             }
 
+            /* Try to open port if not already open: */
             try
             {
                 port.PortName = cbComPort.Text;
