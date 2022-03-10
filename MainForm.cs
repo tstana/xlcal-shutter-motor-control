@@ -23,9 +23,6 @@ namespace xlcal_shutter_motor_control
         {
             InitializeComponent();
 
-            labelComPortStatus.Text = "";
-            labelShutterStatus.Text = "Shutter: ? / Ctrl: Off";
-
             port = new SerialPort();
             port.BaudRate = 9600;
         }
@@ -49,7 +46,8 @@ namespace xlcal_shutter_motor_control
             if (port.IsOpen)
             {
                 port.Close();
-                labelComPortStatus.Text = "";
+                labelComPortStatus.Text = "NoConn";
+                labelComPortStatus.BackColor = Color.Red;
                 btnOpenClosePort.Text = "Open";
                 return;
             }
@@ -58,10 +56,8 @@ namespace xlcal_shutter_motor_control
             {
                 port.PortName = cbComPort.Text;
                 port.Open();
-                labelComPortStatus.Font = new Font(
-                    labelComPortStatus.Font,
-                    FontStyle.Regular);
-                labelComPortStatus.Text = "Open @ 9600 baud.";
+                labelComPortStatus.Text = "9600 baud";
+                labelComPortStatus.BackColor = Color.DarkGreen;
                 btnOpenClosePort.Text = "Close";
             }
             catch (UnauthorizedAccessException)
@@ -71,10 +67,6 @@ namespace xlcal_shutter_motor_control
                     "Unauthorized Access Exception",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                labelComPortStatus.Font = new Font(
-                    labelComPortStatus.Font,
-                    FontStyle.Italic);
-                labelComPortStatus.Text = "Can't open port!";
             }
             catch (Exception excep)
             {
@@ -135,7 +127,6 @@ namespace xlcal_shutter_motor_control
                 btnStartStopControl.Text = "Start";
                 timerShutterControl.Enabled = false;
             }
-            SetShutterStatusLabel(shutterOpen, timerShutterControl.Enabled);
         }
 
         private void timerShutterControl_Tick(object sender, EventArgs e)
@@ -144,20 +135,16 @@ namespace xlcal_shutter_motor_control
             {
                 btnSetShutterClosedPos_Click(sender, e);
                 shutterOpen = false;
+                labelShutterStatus.Text = "OFF";
+                labelShutterStatus.BackColor = Color.Red;
             }
             else
             {
                 btnSetShutterOpenPos_Click(sender, e);
                 shutterOpen = true;
+                labelShutterStatus.Text = "ON";
+                labelShutterStatus.BackColor = Color.DarkGreen;
             }
-            SetShutterStatusLabel(shutterOpen, true);
-        }
-
-        private void SetShutterStatusLabel(bool shutterOpen, bool ctrlOn)
-        {
-            labelShutterStatus.Text =
-                "Shutter: " + (shutterOpen ? "On" : "Off") + " / " +
-                "Ctrl: " + (ctrlOn ? "On" : "Off");
         }
     }
 }
