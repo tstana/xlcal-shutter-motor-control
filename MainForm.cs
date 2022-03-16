@@ -215,12 +215,14 @@ namespace xlcal_shutter_motor_control
         {
             if (shutterOpen)
             {
+                port.Write("/1D" + ToEncoderPos(90).ToString() + "R\r");
                 shutterOpen = false;
                 labelShutterStatus.Text = "OFF";
                 labelShutterStatus.BackColor = Color.Red;
             }
             else
             {
+                port.Write("/1P" + ToEncoderPos(90).ToString() + "R\r");
                 shutterOpen = true;
                 labelShutterStatus.Text = "ON";
                 labelShutterStatus.BackColor = Color.DarkGreen;
