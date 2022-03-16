@@ -30,15 +30,12 @@ namespace xlcal_shutter_motor_control
         {
             this.components = new System.ComponentModel.Container();
             this.timerShutterControl = new System.Windows.Forms.Timer(this.components);
-            this.lblShutterClosedPos = new System.Windows.Forms.Label();
-            this.btnSetShutterClosedPos = new System.Windows.Forms.Button();
-            this.spinboxShutterOpenPos = new System.Windows.Forms.NumericUpDown();
-            this.btnSetShutterOpenPos = new System.Windows.Forms.Button();
-            this.spinboxShutterClosedPos = new System.Windows.Forms.NumericUpDown();
-            this.lblShutterOpenPos = new System.Windows.Forms.Label();
+            this.spbRotationAngle = new System.Windows.Forms.NumericUpDown();
+            this.btnRotateCW = new System.Windows.Forms.Button();
             this.groupboxConfig = new System.Windows.Forms.GroupBox();
-            this.checkboxShutterClosedPosFound = new System.Windows.Forms.CheckBox();
-            this.checkboxShutterOpenPosFound = new System.Windows.Forms.CheckBox();
+            this.btnRotateCCW = new System.Windows.Forms.Button();
+            this.btnStopMotor = new System.Windows.Forms.Button();
+            this.btnSetZeroPos = new System.Windows.Forms.Button();
             this.lblComPort = new System.Windows.Forms.Label();
             this.cbComPort = new System.Windows.Forms.ComboBox();
             this.labelComPortStatus = new System.Windows.Forms.Label();
@@ -46,14 +43,14 @@ namespace xlcal_shutter_motor_control
             this.labelShutterStatus = new System.Windows.Forms.Label();
             this.btnStartStopControl = new System.Windows.Forms.Button();
             this.lblOnOffTime = new System.Windows.Forms.Label();
-            this.spinboxOnOffTime = new System.Windows.Forms.NumericUpDown();
+            this.spbOnOffTime = new System.Windows.Forms.NumericUpDown();
             this.lbl1 = new System.Windows.Forms.Label();
             this.groupboxComms = new System.Windows.Forms.GroupBox();
             this.groupboxShutterCtrl = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.spinboxShutterOpenPos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinboxShutterClosedPos)).BeginInit();
+            this.tooltip = new System.Windows.Forms.ToolTip(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.spbRotationAngle)).BeginInit();
             this.groupboxConfig.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spinboxOnOffTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spbOnOffTime)).BeginInit();
             this.groupboxComms.SuspendLayout();
             this.groupboxShutterCtrl.SuspendLayout();
             this.SuspendLayout();
@@ -63,131 +60,87 @@ namespace xlcal_shutter_motor_control
             this.timerShutterControl.Interval = 1000;
             this.timerShutterControl.Tick += new System.EventHandler(this.timerShutterControl_Tick);
             // 
-            // lblShutterClosedPos
+            // spbRotationAngle
             // 
-            this.lblShutterClosedPos.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblShutterClosedPos.AutoSize = true;
-            this.lblShutterClosedPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblShutterClosedPos.Location = new System.Drawing.Point(6, 87);
-            this.lblShutterClosedPos.Name = "lblShutterClosedPos";
-            this.lblShutterClosedPos.Size = new System.Drawing.Size(150, 20);
-            this.lblShutterClosedPos.TabIndex = 5;
-            this.lblShutterClosedPos.Text = "Shutter Closed Pos:";
-            // 
-            // btnSetShutterClosedPos
-            // 
-            this.btnSetShutterClosedPos.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnSetShutterClosedPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSetShutterClosedPos.Location = new System.Drawing.Point(377, 82);
-            this.btnSetShutterClosedPos.Name = "btnSetShutterClosedPos";
-            this.btnSetShutterClosedPos.Size = new System.Drawing.Size(118, 31);
-            this.btnSetShutterClosedPos.TabIndex = 12;
-            this.btnSetShutterClosedPos.Text = "Set";
-            this.btnSetShutterClosedPos.UseVisualStyleBackColor = true;
-            this.btnSetShutterClosedPos.Click += new System.EventHandler(this.btnSetShutterClosedPos_Click);
-            // 
-            // spinboxShutterOpenPos
-            // 
-            this.spinboxShutterOpenPos.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.spinboxShutterOpenPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spinboxShutterOpenPos.Increment = new decimal(new int[] {
+            this.spbRotationAngle.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.spbRotationAngle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spbRotationAngle.Increment = new decimal(new int[] {
             100,
             0,
             0,
             0});
-            this.spinboxShutterOpenPos.Location = new System.Drawing.Point(162, 38);
-            this.spinboxShutterOpenPos.Maximum = new decimal(new int[] {
-            2147483647,
+            this.spbRotationAngle.Location = new System.Drawing.Point(112, 28);
+            this.spbRotationAngle.Maximum = new decimal(new int[] {
+            360,
             0,
             0,
             0});
-            this.spinboxShutterOpenPos.Name = "spinboxShutterOpenPos";
-            this.spinboxShutterOpenPos.Size = new System.Drawing.Size(120, 26);
-            this.spinboxShutterOpenPos.TabIndex = 8;
+            this.spbRotationAngle.Name = "spbRotationAngle";
+            this.spbRotationAngle.Size = new System.Drawing.Size(67, 26);
+            this.spbRotationAngle.TabIndex = 8;
             // 
-            // btnSetShutterOpenPos
+            // btnRotateCW
             // 
-            this.btnSetShutterOpenPos.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnSetShutterOpenPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSetShutterOpenPos.Location = new System.Drawing.Point(377, 36);
-            this.btnSetShutterOpenPos.Name = "btnSetShutterOpenPos";
-            this.btnSetShutterOpenPos.Size = new System.Drawing.Size(118, 31);
-            this.btnSetShutterOpenPos.TabIndex = 13;
-            this.btnSetShutterOpenPos.Text = "Set";
-            this.btnSetShutterOpenPos.UseVisualStyleBackColor = true;
-            this.btnSetShutterOpenPos.Click += new System.EventHandler(this.btnSetShutterOpenPos_Click);
-            // 
-            // spinboxShutterClosedPos
-            // 
-            this.spinboxShutterClosedPos.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.spinboxShutterClosedPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spinboxShutterClosedPos.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.spinboxShutterClosedPos.Location = new System.Drawing.Point(162, 85);
-            this.spinboxShutterClosedPos.Maximum = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.spinboxShutterClosedPos.Name = "spinboxShutterClosedPos";
-            this.spinboxShutterClosedPos.Size = new System.Drawing.Size(120, 26);
-            this.spinboxShutterClosedPos.TabIndex = 9;
-            // 
-            // lblShutterOpenPos
-            // 
-            this.lblShutterOpenPos.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblShutterOpenPos.AutoSize = true;
-            this.lblShutterOpenPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShutterOpenPos.Location = new System.Drawing.Point(6, 41);
-            this.lblShutterOpenPos.Name = "lblShutterOpenPos";
-            this.lblShutterOpenPos.Size = new System.Drawing.Size(140, 20);
-            this.lblShutterOpenPos.TabIndex = 6;
-            this.lblShutterOpenPos.Text = "Shutter Open Pos:";
+            this.btnRotateCW.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnRotateCW.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRotateCW.Location = new System.Drawing.Point(185, 25);
+            this.btnRotateCW.Name = "btnRotateCW";
+            this.btnRotateCW.Size = new System.Drawing.Size(100, 31);
+            this.btnRotateCW.TabIndex = 13;
+            this.btnRotateCW.Text = "Rotate >>";
+            this.btnRotateCW.UseVisualStyleBackColor = true;
+            this.btnRotateCW.Click += new System.EventHandler(this.btnRotateCW_Click);
             // 
             // groupboxConfig
             // 
-            this.groupboxConfig.Controls.Add(this.checkboxShutterClosedPosFound);
-            this.groupboxConfig.Controls.Add(this.checkboxShutterOpenPosFound);
-            this.groupboxConfig.Controls.Add(this.lblShutterOpenPos);
-            this.groupboxConfig.Controls.Add(this.lblShutterClosedPos);
-            this.groupboxConfig.Controls.Add(this.spinboxShutterClosedPos);
-            this.groupboxConfig.Controls.Add(this.btnSetShutterOpenPos);
-            this.groupboxConfig.Controls.Add(this.btnSetShutterClosedPos);
-            this.groupboxConfig.Controls.Add(this.spinboxShutterOpenPos);
+            this.groupboxConfig.Controls.Add(this.btnRotateCCW);
+            this.groupboxConfig.Controls.Add(this.btnStopMotor);
+            this.groupboxConfig.Controls.Add(this.btnSetZeroPos);
+            this.groupboxConfig.Controls.Add(this.btnRotateCW);
+            this.groupboxConfig.Controls.Add(this.spbRotationAngle);
             this.groupboxConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupboxConfig.Location = new System.Drawing.Point(13, 126);
+            this.groupboxConfig.Location = new System.Drawing.Point(13, 129);
             this.groupboxConfig.Name = "groupboxConfig";
-            this.groupboxConfig.Size = new System.Drawing.Size(508, 134);
+            this.groupboxConfig.Size = new System.Drawing.Size(292, 161);
             this.groupboxConfig.TabIndex = 14;
             this.groupboxConfig.TabStop = false;
             this.groupboxConfig.Text = "Configure Motor Positions";
             // 
-            // checkboxShutterClosedPosFound
+            // btnRotateCCW
             // 
-            this.checkboxShutterClosedPosFound.AutoSize = true;
-            this.checkboxShutterClosedPosFound.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkboxShutterClosedPosFound.Location = new System.Drawing.Point(288, 86);
-            this.checkboxShutterClosedPosFound.Name = "checkboxShutterClosedPosFound";
-            this.checkboxShutterClosedPosFound.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkboxShutterClosedPosFound.Size = new System.Drawing.Size(74, 24);
-            this.checkboxShutterClosedPosFound.TabIndex = 14;
-            this.checkboxShutterClosedPosFound.Text = "Found";
-            this.checkboxShutterClosedPosFound.UseVisualStyleBackColor = true;
+            this.btnRotateCCW.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnRotateCCW.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRotateCCW.Location = new System.Drawing.Point(6, 25);
+            this.btnRotateCCW.Name = "btnRotateCCW";
+            this.btnRotateCCW.Size = new System.Drawing.Size(100, 31);
+            this.btnRotateCCW.TabIndex = 13;
+            this.btnRotateCCW.Text = "<< Rotate";
+            this.btnRotateCCW.UseVisualStyleBackColor = true;
+            this.btnRotateCCW.Click += new System.EventHandler(this.btnRotateCCW_Click);
             // 
-            // checkboxShutterOpenPosFound
+            // btnStopMotor
             // 
-            this.checkboxShutterOpenPosFound.AutoSize = true;
-            this.checkboxShutterOpenPosFound.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkboxShutterOpenPosFound.Location = new System.Drawing.Point(288, 40);
-            this.checkboxShutterOpenPosFound.Name = "checkboxShutterOpenPosFound";
-            this.checkboxShutterOpenPosFound.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkboxShutterOpenPosFound.Size = new System.Drawing.Size(74, 24);
-            this.checkboxShutterOpenPosFound.TabIndex = 14;
-            this.checkboxShutterOpenPosFound.Text = "Found";
-            this.checkboxShutterOpenPosFound.UseVisualStyleBackColor = true;
+            this.btnStopMotor.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnStopMotor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStopMotor.Location = new System.Drawing.Point(95, 62);
+            this.btnStopMotor.Name = "btnStopMotor";
+            this.btnStopMotor.Size = new System.Drawing.Size(100, 31);
+            this.btnStopMotor.TabIndex = 13;
+            this.btnStopMotor.Text = "Stop";
+            this.btnStopMotor.UseVisualStyleBackColor = true;
+            this.btnStopMotor.Click += new System.EventHandler(this.btnStopMotor_Click);
+            // 
+            // btnSetZeroPos
+            // 
+            this.btnSetZeroPos.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnSetZeroPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSetZeroPos.Location = new System.Drawing.Point(6, 124);
+            this.btnSetZeroPos.Name = "btnSetZeroPos";
+            this.btnSetZeroPos.Size = new System.Drawing.Size(279, 31);
+            this.btnSetZeroPos.TabIndex = 13;
+            this.btnSetZeroPos.Text = "Set Zero Position";
+            this.btnSetZeroPos.UseVisualStyleBackColor = true;
+            this.btnSetZeroPos.Click += new System.EventHandler(this.btnSetZeroPos_Click);
             // 
             // lblComPort
             // 
@@ -204,29 +157,29 @@ namespace xlcal_shutter_motor_control
             // 
             this.cbComPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbComPort.FormattingEnabled = true;
-            this.cbComPort.Location = new System.Drawing.Point(105, 33);
+            this.cbComPort.Location = new System.Drawing.Point(94, 33);
             this.cbComPort.Name = "cbComPort";
-            this.cbComPort.Size = new System.Drawing.Size(118, 28);
+            this.cbComPort.Size = new System.Drawing.Size(191, 28);
             this.cbComPort.TabIndex = 16;
             this.cbComPort.Click += new System.EventHandler(this.cbComPort_Click);
             // 
             // labelComPortStatus
             // 
-            this.labelComPortStatus.AutoSize = true;
             this.labelComPortStatus.BackColor = System.Drawing.Color.Red;
             this.labelComPortStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelComPortStatus.ForeColor = System.Drawing.SystemColors.Control;
             this.labelComPortStatus.Location = new System.Drawing.Point(6, 72);
             this.labelComPortStatus.Name = "labelComPortStatus";
-            this.labelComPortStatus.Size = new System.Drawing.Size(73, 20);
+            this.labelComPortStatus.Size = new System.Drawing.Size(155, 20);
             this.labelComPortStatus.TabIndex = 17;
-            this.labelComPortStatus.Text = "NoConn";
+            this.labelComPortStatus.Text = "Not connected";
+            this.labelComPortStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnOpenClosePort
             // 
             this.btnOpenClosePort.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnOpenClosePort.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenClosePort.Location = new System.Drawing.Point(105, 67);
+            this.btnOpenClosePort.Location = new System.Drawing.Point(167, 67);
             this.btnOpenClosePort.Name = "btnOpenClosePort";
             this.btnOpenClosePort.Size = new System.Drawing.Size(118, 30);
             this.btnOpenClosePort.TabIndex = 20;
@@ -269,25 +222,25 @@ namespace xlcal_shutter_motor_control
             this.lblOnOffTime.TabIndex = 23;
             this.lblOnOffTime.Text = "Time On/Off (mins.):";
             // 
-            // spinboxOnOffTime
+            // spbOnOffTime
             // 
-            this.spinboxOnOffTime.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.spinboxOnOffTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spinboxOnOffTime.Location = new System.Drawing.Point(170, 35);
-            this.spinboxOnOffTime.Maximum = new decimal(new int[] {
+            this.spbOnOffTime.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.spbOnOffTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spbOnOffTime.Location = new System.Drawing.Point(170, 35);
+            this.spbOnOffTime.Maximum = new decimal(new int[] {
             60,
             0,
             0,
             0});
-            this.spinboxOnOffTime.Minimum = new decimal(new int[] {
+            this.spbOnOffTime.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.spinboxOnOffTime.Name = "spinboxOnOffTime";
-            this.spinboxOnOffTime.Size = new System.Drawing.Size(89, 26);
-            this.spinboxOnOffTime.TabIndex = 24;
-            this.spinboxOnOffTime.Value = new decimal(new int[] {
+            this.spbOnOffTime.Name = "spbOnOffTime";
+            this.spbOnOffTime.Size = new System.Drawing.Size(89, 26);
+            this.spbOnOffTime.TabIndex = 24;
+            this.spbOnOffTime.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -313,23 +266,23 @@ namespace xlcal_shutter_motor_control
             this.groupboxComms.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupboxComms.Location = new System.Drawing.Point(13, 12);
             this.groupboxComms.Name = "groupboxComms";
-            this.groupboxComms.Size = new System.Drawing.Size(229, 103);
+            this.groupboxComms.Size = new System.Drawing.Size(292, 103);
             this.groupboxComms.TabIndex = 27;
             this.groupboxComms.TabStop = false;
             this.groupboxComms.Text = "Serial Port";
             // 
             // groupboxShutterCtrl
             // 
-            this.groupboxShutterCtrl.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.groupboxShutterCtrl.BackColor = System.Drawing.SystemColors.Control;
             this.groupboxShutterCtrl.Controls.Add(this.lblOnOffTime);
             this.groupboxShutterCtrl.Controls.Add(this.labelShutterStatus);
-            this.groupboxShutterCtrl.Controls.Add(this.spinboxOnOffTime);
+            this.groupboxShutterCtrl.Controls.Add(this.spbOnOffTime);
             this.groupboxShutterCtrl.Controls.Add(this.btnStartStopControl);
             this.groupboxShutterCtrl.Controls.Add(this.lbl1);
-            this.groupboxShutterCtrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupboxShutterCtrl.Location = new System.Drawing.Point(249, 12);
+            this.groupboxShutterCtrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupboxShutterCtrl.Location = new System.Drawing.Point(12, 304);
             this.groupboxShutterCtrl.Name = "groupboxShutterCtrl";
-            this.groupboxShutterCtrl.Size = new System.Drawing.Size(272, 103);
+            this.groupboxShutterCtrl.Size = new System.Drawing.Size(292, 103);
             this.groupboxShutterCtrl.TabIndex = 28;
             this.groupboxShutterCtrl.TabStop = false;
             this.groupboxShutterCtrl.Text = "Shutter Control";
@@ -337,7 +290,7 @@ namespace xlcal_shutter_motor_control
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(533, 272);
+            this.ClientSize = new System.Drawing.Size(322, 420);
             this.Controls.Add(this.groupboxComms);
             this.Controls.Add(this.groupboxConfig);
             this.Controls.Add(this.groupboxShutterCtrl);
@@ -345,11 +298,9 @@ namespace xlcal_shutter_motor_control
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Shutter Motor Control";
-            ((System.ComponentModel.ISupportInitialize)(this.spinboxShutterOpenPos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinboxShutterClosedPos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spbRotationAngle)).EndInit();
             this.groupboxConfig.ResumeLayout(false);
-            this.groupboxConfig.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spinboxOnOffTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spbOnOffTime)).EndInit();
             this.groupboxComms.ResumeLayout(false);
             this.groupboxComms.PerformLayout();
             this.groupboxShutterCtrl.ResumeLayout(false);
@@ -360,15 +311,9 @@ namespace xlcal_shutter_motor_control
 
         #endregion
         private System.Windows.Forms.Timer timerShutterControl;
-        private System.Windows.Forms.Label lblShutterClosedPos;
-        private System.Windows.Forms.Button btnSetShutterClosedPos;
-        private System.Windows.Forms.NumericUpDown spinboxShutterOpenPos;
-        private System.Windows.Forms.Button btnSetShutterOpenPos;
-        private System.Windows.Forms.NumericUpDown spinboxShutterClosedPos;
-        private System.Windows.Forms.Label lblShutterOpenPos;
+        private System.Windows.Forms.NumericUpDown spbRotationAngle;
+        private System.Windows.Forms.Button btnRotateCW;
         private System.Windows.Forms.GroupBox groupboxConfig;
-        private System.Windows.Forms.CheckBox checkboxShutterClosedPosFound;
-        private System.Windows.Forms.CheckBox checkboxShutterOpenPosFound;
         private System.Windows.Forms.Label lblComPort;
         private System.Windows.Forms.ComboBox cbComPort;
         private System.Windows.Forms.Label labelComPortStatus;
@@ -376,10 +321,14 @@ namespace xlcal_shutter_motor_control
         private System.Windows.Forms.Label labelShutterStatus;
         private System.Windows.Forms.Button btnStartStopControl;
         private System.Windows.Forms.Label lblOnOffTime;
-        private System.Windows.Forms.NumericUpDown spinboxOnOffTime;
+        private System.Windows.Forms.NumericUpDown spbOnOffTime;
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.GroupBox groupboxComms;
         private System.Windows.Forms.GroupBox groupboxShutterCtrl;
+        private System.Windows.Forms.Button btnRotateCCW;
+        private System.Windows.Forms.ToolTip tooltip;
+        private System.Windows.Forms.Button btnStopMotor;
+        private System.Windows.Forms.Button btnSetZeroPos;
     }
 }
 

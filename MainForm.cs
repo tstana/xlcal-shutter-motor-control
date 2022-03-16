@@ -25,6 +25,23 @@ namespace xlcal_shutter_motor_control
 
             port = new SerialPort();
             port.BaudRate = 9600;
+
+            tooltip.SetToolTip(btnOpenClosePort, "Open COM port connection @" +
+                " 9600 baud.");
+            tooltip.SetToolTip(cbComPort, "Select COM port.");
+            tooltip.SetToolTip(spbRotationAngle, "Rotation angle in degrees.");
+            tooltip.SetToolTip(btnRotateCCW, "Rotate counter-clockwise.");
+            tooltip.SetToolTip(btnRotateCW, "Rotate clockwise.");
+            tooltip.SetToolTip(btnStopMotor, "Stop motor rotation.");
+            tooltip.SetToolTip(btnSetZeroPos, "Horizontal position found: " +
+                " set as motor's zero position.");
+
+            // Upon power-up, the motor will think it's at zero position, even
+            // though it likely won't be. Due to the "features" of the
+            // EZStepper motor driver, we can only make positive (clockwise
+            // with our setup) movements. Thus, the CCW button needs to be
+            // disabled until a positive movement has been made.
+            btnRotateCCW.Enabled = false;
         }
 
         private void cbComPort_Click(object sender, EventArgs e)
@@ -55,9 +72,11 @@ namespace xlcal_shutter_motor_control
                     return;
                 }
                 port.Close();
-                labelComPortStatus.Text = "NoConn";
+                labelComPortStatus.Text = "Not connected";
                 labelComPortStatus.BackColor = Color.Red;
                 btnOpenClosePort.Text = "Open";
+                tooltip.SetToolTip(btnOpenClosePort, "Open COM port " +
+                    "connection @ 9600 baud.");
                 return;
             }
 
@@ -69,6 +88,8 @@ namespace xlcal_shutter_motor_control
                 labelComPortStatus.Text = "9600 baud";
                 labelComPortStatus.BackColor = Color.DarkGreen;
                 btnOpenClosePort.Text = "Close";
+                tooltip.SetToolTip(btnOpenClosePort, "Close COM port " +
+                    "connection.");
             }
             catch (UnauthorizedAccessException)
             {
@@ -89,30 +110,7 @@ namespace xlcal_shutter_motor_control
 
         private void btnSetShutterOpenPos_Click(object sender, EventArgs e)
         {
-            if (!port.IsOpen)
-            {
-                MessageBox.Show("Please connect to motor driver board first!",
-                    "Serial port not open",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                return;
-            }
-
-            port.Write("/1A" + spinboxShutterOpenPos.Value.ToString() + "R\r");
-        }
-
-        private void btnSetShutterClosedPos_Click(object sender, EventArgs e)
-        {
-            if (!port.IsOpen)
-            {
-                MessageBox.Show("Please connect to motor driver board first!",
-                    "Serial port not open",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                return;
-            }
-
-            port.Write("/1A" + spinboxShutterClosedPos.Value.ToString() + "R\r");
+            port.Write("/1A" + spbRotationAngle.Value.ToString() + "R\r");
         }
 
         private void btnStartStopControl_Click(object sender, EventArgs e)
@@ -129,7 +127,7 @@ namespace xlcal_shutter_motor_control
             if (!timerShutterControl.Enabled)
             {
                 btnStartStopControl.Text = "Stop";
-                timerShutterControl.Interval = (int)spinboxOnOffTime.Value * 60000;
+                timerShutterControl.Interval = (int)spbOnOffTime.Value * 60000;
                 timerShutterControl.Enabled = true;
             }
             else
@@ -143,18 +141,54 @@ namespace xlcal_shutter_motor_control
         {
             if (shutterOpen)
             {
-                btnSetShutterClosedPos_Click(sender, e);
                 shutterOpen = false;
                 labelShutterStatus.Text = "OFF";
                 labelShutterStatus.BackColor = Color.Red;
             }
             else
             {
-                btnSetShutterOpenPos_Click(sender, e);
                 shutterOpen = true;
                 labelShutterStatus.Text = "ON";
                 labelShutterStatus.BackColor = Color.DarkGreen;
             }
+        }
+
+        private void btnRotateCW_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRotateCCW_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStopMotor_Click(object sender, EventArgs e)
+        {
+            if (!port.IsOpen)
+            {
+                MessageBox.Show("Please connect to motor driver board first!",
+                    "Serial port not open",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            port.Write("/1TR");
+        }
+
+        private void btnSetZeroPos_Click(object sender, EventArgs e)
+        {
+            if (!port.IsOpen)
+            {
+                MessageBox.Show("Please connect to motor driver board first!",
+                    "Serial port not open",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            port.Write("/1z0R");
         }
     }
 }
