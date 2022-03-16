@@ -123,7 +123,7 @@ namespace xlcal_shutter_motor_control
 
         private uint ToEncoderPos(decimal angle)
         {
-            return (uint)(NumEncoderPulsesPerRevolution / angle);
+            return (uint)(NumEncoderPulsesPerRevolution * angle / 360);
         }
 
         private void btnRotateCW_Click(object sender, EventArgs e)
