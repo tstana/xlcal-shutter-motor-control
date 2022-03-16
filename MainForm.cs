@@ -62,7 +62,7 @@ namespace xlcal_shutter_motor_control
 
         private void btnOpenClosePort_Click(object sender, EventArgs e)
         {
-            /* Exit early from function if port is open: */
+            // Exit early from function if port is open
             if (port.IsOpen)
             {
                 if (timerShutterControl.Enabled)
@@ -83,7 +83,7 @@ namespace xlcal_shutter_motor_control
                 return;
             }
 
-            /* Try to open port if not already open: */
+            // Try to open port if not already open
             try
             {
                 port.PortName = cbComPort.Text;
@@ -109,6 +109,16 @@ namespace xlcal_shutter_motor_control
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+
+            // Send some commands to ensure the motor works:
+            // - Set number of microsteps per step ("/1j...")
+            // - Set velocity to 4000 microsteps per sec. ("/1V...")
+            // - Set the encoder conversion ratio ("/1aE...")
+            port.Write("/1j" + NumMicrostepsPerStep.ToString() + "R\r");
+            port.Write("/1V4000R\r");
+            port.Write("/1aE" +
+                ((NumMotorStepsPerRevolution / NumEncoderPulsesPerRevolution) * 1000).ToString() +
+                "R\r");
         }
 
         private uint ToEncoderPos(decimal angle)
@@ -177,7 +187,7 @@ namespace xlcal_shutter_motor_control
             port.Write("/1z0R\r");
         }
 
-    private void btnStartStopControl_Click(object sender, EventArgs e)
+        private void btnStartStopControl_Click(object sender, EventArgs e)
         {
             if (!port.IsOpen)
             {
