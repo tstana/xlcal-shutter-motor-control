@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
 
-// This is the code for your desktop app.
-// Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
 
 namespace xlcal_shutter_motor_control
 {
@@ -108,12 +106,45 @@ namespace xlcal_shutter_motor_control
             }
         }
 
-        private void btnSetShutterOpenPos_Click(object sender, EventArgs e)
+        private void btnRotateCW_Click(object sender, EventArgs e)
         {
-            port.Write("/1A" + spbRotationAngle.Value.ToString() + "R\r");
+
         }
 
-        private void btnStartStopControl_Click(object sender, EventArgs e)
+        private void btnRotateCCW_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStopMotor_Click(object sender, EventArgs e)
+        {
+            if (!port.IsOpen)
+            {
+                MessageBox.Show("Please connect to motor driver board first!",
+                    "Serial port not open",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            port.Write("/1TR");
+        }
+
+        private void btnSetZeroPos_Click(object sender, EventArgs e)
+        {
+            if (!port.IsOpen)
+            {
+                MessageBox.Show("Please connect to motor driver board first!",
+                    "Serial port not open",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            port.Write("/1z0R");
+        }
+
+    private void btnStartStopControl_Click(object sender, EventArgs e)
         {
             if (!port.IsOpen)
             {
@@ -151,44 +182,6 @@ namespace xlcal_shutter_motor_control
                 labelShutterStatus.Text = "ON";
                 labelShutterStatus.BackColor = Color.DarkGreen;
             }
-        }
-
-        private void btnRotateCW_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnRotateCCW_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnStopMotor_Click(object sender, EventArgs e)
-        {
-            if (!port.IsOpen)
-            {
-                MessageBox.Show("Please connect to motor driver board first!",
-                    "Serial port not open",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                return;
-            }
-
-            port.Write("/1TR");
-        }
-
-        private void btnSetZeroPos_Click(object sender, EventArgs e)
-        {
-            if (!port.IsOpen)
-            {
-                MessageBox.Show("Please connect to motor driver board first!",
-                    "Serial port not open",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                return;
-            }
-
-            port.Write("/1z0R");
         }
     }
 }
