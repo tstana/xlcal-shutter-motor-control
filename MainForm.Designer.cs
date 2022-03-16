@@ -64,11 +64,6 @@ namespace xlcal_shutter_motor_control
             // 
             this.spbRotationAngle.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.spbRotationAngle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spbRotationAngle.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
             this.spbRotationAngle.Location = new System.Drawing.Point(112, 28);
             this.spbRotationAngle.Maximum = new decimal(new int[] {
             360,
