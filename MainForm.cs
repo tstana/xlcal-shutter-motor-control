@@ -17,6 +17,11 @@ namespace xlcal_shutter_motor_control
         private SerialPort port;
         private bool shutterOpen = false;
 
+        private const decimal NumMicrostepsPerStep = 256;
+        private const decimal NumMotorStepsPerRevolution =
+            400 * NumMicrostepsPerStep;
+        private const decimal NumEncoderPulsesPerRevolution = 1600;
+
         public MainForm()
         {
             InitializeComponent();
@@ -106,14 +111,42 @@ namespace xlcal_shutter_motor_control
             }
         }
 
+        private uint ToEncoderPos(decimal angle)
+        {
+            return (uint)(NumEncoderPulsesPerRevolution / angle);
+        }
+
         private void btnRotateCW_Click(object sender, EventArgs e)
         {
+            if (!port.IsOpen)
+            {
+                MessageBox.Show("Please connect to motor driver board first!",
+                    "Serial port not open",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
 
+            port.Write("/1P" + ToEncoderPos(spbRotationAngle.Value).ToString()
+                + "R\r");
+
+            if (!btnRotateCCW.Enabled)
+                btnRotateCCW.Enabled = true;
         }
 
         private void btnRotateCCW_Click(object sender, EventArgs e)
         {
+            if (!port.IsOpen)
+            {
+                MessageBox.Show("Please connect to motor driver board first!",
+                    "Serial port not open",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
 
+            port.Write("/1D" + ToEncoderPos(spbRotationAngle.Value).ToString()
+                + "R\r");
         }
 
         private void btnStopMotor_Click(object sender, EventArgs e)
@@ -127,7 +160,7 @@ namespace xlcal_shutter_motor_control
                 return;
             }
 
-            port.Write("/1TR");
+            port.Write("/1TR\r");
         }
 
         private void btnSetZeroPos_Click(object sender, EventArgs e)
@@ -141,7 +174,7 @@ namespace xlcal_shutter_motor_control
                 return;
             }
 
-            port.Write("/1z0R");
+            port.Write("/1z0R\r");
         }
 
     private void btnStartStopControl_Click(object sender, EventArgs e)
