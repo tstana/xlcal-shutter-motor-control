@@ -75,9 +75,19 @@ namespace xlcal_shutter_motor_control
             0,
             0,
             0});
+            this.spbRotationAngle.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.spbRotationAngle.Name = "spbRotationAngle";
             this.spbRotationAngle.Size = new System.Drawing.Size(67, 26);
             this.spbRotationAngle.TabIndex = 8;
+            this.spbRotationAngle.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // btnRotateCW
             // 
