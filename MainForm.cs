@@ -112,11 +112,11 @@ namespace xlcal_shutter_motor_control
 
             // Send some commands to ensure the motor works:
             // - Set number of microsteps per step ("/1j...")
-            // - Set velocity to 4000 microsteps per sec. ("/1V...")
+            // - Set velocity in microsteps per sec. ("/1V...")
             // - Set the encoder conversion ratio ("/1aE...")
             port.Write("/1j" + NumMicrostepsPerStep.ToString() + "R\r");
             Thread.Sleep(500);
-            port.Write("/1V4000R\r");
+            port.Write("/1V" + "4000" + "R\r");
             Thread.Sleep(500);
             port.Write("/1aE" +
                 ((NumMotorStepsPerRevolution / NumEncoderPulsesPerRevolution) * 1000).ToString() +
