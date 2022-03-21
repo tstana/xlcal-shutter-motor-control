@@ -204,9 +204,9 @@ namespace xlcal_shutter_motor_control
             if (!motorZeroPosFound)
             {
                 MessageBox.Show("You haven't found the motor's \"zero\" " +
-                    "position yet. Please bring the beam cover horizontal " +
-                    "using the controls above and click the \"Set Zero" +
-                    "Position\" button.",
+                    "position yet. Please bring the beam cover vertical " +
+                    "using the controls above and click the \"Set zero" +
+                    "position (vertical)\" button.",
                     "Zero position not found",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -216,7 +216,7 @@ namespace xlcal_shutter_motor_control
             if (!timerMotorControl.Enabled)
             {
                 btnStartStopControl.Text = "Stop";
-                timerMotorControl.Interval = (int)spbOnOffTime.Value * 60000;
+                timerMotorControl.Interval = (int)spbOffTime.Value * 1000;
                 timerMotorControl.Enabled = true;
             }
             else
@@ -234,6 +234,7 @@ namespace xlcal_shutter_motor_control
                 beamOn = false;
                 labelShutterStatus.Text = "OFF";
                 labelShutterStatus.BackColor = Color.Red;
+                timerMotorControl.Interval = (int)spbOffTime.Value * 1000;
             }
             else
             {
@@ -241,6 +242,7 @@ namespace xlcal_shutter_motor_control
                 beamOn = true;
                 labelShutterStatus.Text = "ON";
                 labelShutterStatus.BackColor = Color.DarkGreen;
+                timerMotorControl.Interval = (int)spbOnTime.Value * 1000;
             }
         }
     }
