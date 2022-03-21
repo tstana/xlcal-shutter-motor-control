@@ -115,6 +115,7 @@ namespace CalibBeamCtrl
                     "Unauthorized Access Exception",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+                return;
             }
             catch (Exception excep)
             {
@@ -122,6 +123,7 @@ namespace CalibBeamCtrl
                     "Other Exception",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+                return;
             }
 
             // Send some commands to ensure the motor works:
