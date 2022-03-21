@@ -57,6 +57,10 @@ namespace xlcal_shutter_motor_control
             this.spbOffTimeSec = new System.Windows.Forms.NumericUpDown();
             this.spbOnTimeMins = new System.Windows.Forms.NumericUpDown();
             this.tooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.groupboxLogfile = new System.Windows.Forms.GroupBox();
+            this.txtboxLogfile = new System.Windows.Forms.TextBox();
+            this.btnOpenLogfile = new System.Windows.Forms.Button();
+            this.checkboxUseLogfile = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.spbRotationAngle)).BeginInit();
             this.groupboxConfig.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spbOnTimeSec)).BeginInit();
@@ -65,6 +69,7 @@ namespace xlcal_shutter_motor_control
             ((System.ComponentModel.ISupportInitialize)(this.spbOffTimeMins)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spbOffTimeSec)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spbOnTimeMins)).BeginInit();
+            this.groupboxLogfile.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerMotorControl
@@ -76,14 +81,19 @@ namespace xlcal_shutter_motor_control
             // 
             this.spbRotationAngle.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.spbRotationAngle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spbRotationAngle.Location = new System.Drawing.Point(92, 33);
+            this.spbRotationAngle.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.spbRotationAngle.Location = new System.Drawing.Point(92, 30);
             this.spbRotationAngle.Maximum = new decimal(new int[] {
             360,
             0,
             0,
             0});
             this.spbRotationAngle.Minimum = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
             0});
@@ -91,7 +101,7 @@ namespace xlcal_shutter_motor_control
             this.spbRotationAngle.Size = new System.Drawing.Size(47, 20);
             this.spbRotationAngle.TabIndex = 3;
             this.spbRotationAngle.Value = new decimal(new int[] {
-            360,
+            5,
             0,
             0,
             0});
@@ -100,7 +110,7 @@ namespace xlcal_shutter_motor_control
             // 
             this.btnRotateCW.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnRotateCW.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRotateCW.Location = new System.Drawing.Point(145, 29);
+            this.btnRotateCW.Location = new System.Drawing.Point(145, 26);
             this.btnRotateCW.Name = "btnRotateCW";
             this.btnRotateCW.Size = new System.Drawing.Size(80, 25);
             this.btnRotateCW.TabIndex = 4;
@@ -116,9 +126,9 @@ namespace xlcal_shutter_motor_control
             this.groupboxConfig.Controls.Add(this.btnRotateCW);
             this.groupboxConfig.Controls.Add(this.spbRotationAngle);
             this.groupboxConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupboxConfig.Location = new System.Drawing.Point(12, 183);
+            this.groupboxConfig.Location = new System.Drawing.Point(13, 163);
             this.groupboxConfig.Name = "groupboxConfig";
-            this.groupboxConfig.Size = new System.Drawing.Size(234, 129);
+            this.groupboxConfig.Size = new System.Drawing.Size(233, 129);
             this.groupboxConfig.TabIndex = 14;
             this.groupboxConfig.TabStop = false;
             this.groupboxConfig.Text = "Configure Motor Positions";
@@ -127,7 +137,7 @@ namespace xlcal_shutter_motor_control
             // 
             this.btnRotateCCW.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnRotateCCW.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRotateCCW.Location = new System.Drawing.Point(6, 29);
+            this.btnRotateCCW.Location = new System.Drawing.Point(6, 26);
             this.btnRotateCCW.Name = "btnRotateCCW";
             this.btnRotateCCW.Size = new System.Drawing.Size(80, 25);
             this.btnRotateCCW.TabIndex = 2;
@@ -139,7 +149,7 @@ namespace xlcal_shutter_motor_control
             // 
             this.btnStopMotor.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnStopMotor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStopMotor.Location = new System.Drawing.Point(92, 64);
+            this.btnStopMotor.Location = new System.Drawing.Point(92, 61);
             this.btnStopMotor.Name = "btnStopMotor";
             this.btnStopMotor.Size = new System.Drawing.Size(47, 25);
             this.btnStopMotor.TabIndex = 5;
@@ -302,9 +312,9 @@ namespace xlcal_shutter_motor_control
             this.groupboxShutterCtrl.Controls.Add(this.btnStartStopControl);
             this.groupboxShutterCtrl.Controls.Add(this.lbl1);
             this.groupboxShutterCtrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupboxShutterCtrl.Location = new System.Drawing.Point(12, 318);
+            this.groupboxShutterCtrl.Location = new System.Drawing.Point(13, 298);
             this.groupboxShutterCtrl.Name = "groupboxShutterCtrl";
-            this.groupboxShutterCtrl.Size = new System.Drawing.Size(234, 117);
+            this.groupboxShutterCtrl.Size = new System.Drawing.Size(233, 117);
             this.groupboxShutterCtrl.TabIndex = 28;
             this.groupboxShutterCtrl.TabStop = false;
             this.groupboxShutterCtrl.Text = "Calibration Beam";
@@ -421,10 +431,54 @@ namespace xlcal_shutter_motor_control
             this.spbOnTimeMins.TabIndex = 9;
             this.spbOnTimeMins.ValueChanged += new System.EventHandler(this.spbOnTimeMins_ValueChanged);
             // 
+            // groupboxLogfile
+            // 
+            this.groupboxLogfile.Controls.Add(this.checkboxUseLogfile);
+            this.groupboxLogfile.Controls.Add(this.btnOpenLogfile);
+            this.groupboxLogfile.Controls.Add(this.txtboxLogfile);
+            this.groupboxLogfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupboxLogfile.Location = new System.Drawing.Point(13, 105);
+            this.groupboxLogfile.Name = "groupboxLogfile";
+            this.groupboxLogfile.Size = new System.Drawing.Size(233, 52);
+            this.groupboxLogfile.TabIndex = 29;
+            this.groupboxLogfile.TabStop = false;
+            this.groupboxLogfile.Text = "Log File";
+            // 
+            // txtboxLogfile
+            // 
+            this.txtboxLogfile.Location = new System.Drawing.Point(59, 22);
+            this.txtboxLogfile.Name = "txtboxLogfile";
+            this.txtboxLogfile.Size = new System.Drawing.Size(122, 20);
+            this.txtboxLogfile.TabIndex = 0;
+            this.txtboxLogfile.TextChanged += new System.EventHandler(this.textboxLogfile_TextChanged);
+            // 
+            // btnOpenLogfile
+            // 
+            this.btnOpenLogfile.Location = new System.Drawing.Point(189, 20);
+            this.btnOpenLogfile.Name = "btnOpenLogfile";
+            this.btnOpenLogfile.Size = new System.Drawing.Size(35, 23);
+            this.btnOpenLogfile.TabIndex = 1;
+            this.btnOpenLogfile.Text = "...";
+            this.btnOpenLogfile.UseVisualStyleBackColor = true;
+            // 
+            // checkboxUseLogfile
+            // 
+            this.checkboxUseLogfile.AutoSize = true;
+            this.checkboxUseLogfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkboxUseLogfile.Location = new System.Drawing.Point(5, 24);
+            this.checkboxUseLogfile.Name = "checkboxUseLogfile";
+            this.checkboxUseLogfile.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkboxUseLogfile.Size = new System.Drawing.Size(45, 17);
+            this.checkboxUseLogfile.TabIndex = 2;
+            this.checkboxUseLogfile.Text = "Use";
+            this.checkboxUseLogfile.UseVisualStyleBackColor = true;
+            this.checkboxUseLogfile.CheckedChanged += new System.EventHandler(this.checkboxUseLogfile_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(257, 447);
+            this.ClientSize = new System.Drawing.Size(257, 424);
+            this.Controls.Add(this.groupboxLogfile);
             this.Controls.Add(this.groupboxComms);
             this.Controls.Add(this.groupboxConfig);
             this.Controls.Add(this.groupboxShutterCtrl);
@@ -443,6 +497,8 @@ namespace xlcal_shutter_motor_control
             ((System.ComponentModel.ISupportInitialize)(this.spbOffTimeMins)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spbOffTimeSec)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spbOnTimeMins)).EndInit();
+            this.groupboxLogfile.ResumeLayout(false);
+            this.groupboxLogfile.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -476,6 +532,10 @@ namespace xlcal_shutter_motor_control
         private System.Windows.Forms.NumericUpDown spbOffTimeMins;
         private System.Windows.Forms.NumericUpDown spbOffTimeSec;
         private System.Windows.Forms.ProgressBar pbarTimeElapsed;
+        private System.Windows.Forms.GroupBox groupboxLogfile;
+        private System.Windows.Forms.Button btnOpenLogfile;
+        private System.Windows.Forms.TextBox txtboxLogfile;
+        private System.Windows.Forms.CheckBox checkboxUseLogfile;
     }
 }
 
