@@ -206,9 +206,9 @@ namespace xlcal_shutter_motor_control
 
             if (!motorZeroPosFound)
             {
-                MessageBox.Show("You haven't found the motor's \"zero\" " +
+                MessageBox.Show("You haven't found the motor's zero " +
                     "position yet. Please bring the beam cover vertical " +
-                    "using the controls above and click the \"Set zero" +
+                    "using the controls above and click the \"Set zero " +
                     "position (vertical)\" button.",
                     "Zero position not found",
                     MessageBoxButtons.OK,
