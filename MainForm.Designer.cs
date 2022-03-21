@@ -89,7 +89,7 @@ namespace xlcal_shutter_motor_control
             0});
             this.spbRotationAngle.Name = "spbRotationAngle";
             this.spbRotationAngle.Size = new System.Drawing.Size(67, 26);
-            this.spbRotationAngle.TabIndex = 8;
+            this.spbRotationAngle.TabIndex = 3;
             this.spbRotationAngle.Value = new decimal(new int[] {
             1,
             0,
@@ -103,7 +103,7 @@ namespace xlcal_shutter_motor_control
             this.btnRotateCW.Location = new System.Drawing.Point(185, 25);
             this.btnRotateCW.Name = "btnRotateCW";
             this.btnRotateCW.Size = new System.Drawing.Size(100, 31);
-            this.btnRotateCW.TabIndex = 13;
+            this.btnRotateCW.TabIndex = 4;
             this.btnRotateCW.Text = "Rotate >>";
             this.btnRotateCW.UseVisualStyleBackColor = true;
             this.btnRotateCW.Click += new System.EventHandler(this.btnRotateCW_Click);
@@ -130,7 +130,7 @@ namespace xlcal_shutter_motor_control
             this.btnRotateCCW.Location = new System.Drawing.Point(6, 25);
             this.btnRotateCCW.Name = "btnRotateCCW";
             this.btnRotateCCW.Size = new System.Drawing.Size(100, 31);
-            this.btnRotateCCW.TabIndex = 13;
+            this.btnRotateCCW.TabIndex = 2;
             this.btnRotateCCW.Text = "<< Rotate";
             this.btnRotateCCW.UseVisualStyleBackColor = true;
             this.btnRotateCCW.Click += new System.EventHandler(this.btnRotateCCW_Click);
@@ -142,7 +142,7 @@ namespace xlcal_shutter_motor_control
             this.btnStopMotor.Location = new System.Drawing.Point(95, 62);
             this.btnStopMotor.Name = "btnStopMotor";
             this.btnStopMotor.Size = new System.Drawing.Size(100, 31);
-            this.btnStopMotor.TabIndex = 13;
+            this.btnStopMotor.TabIndex = 5;
             this.btnStopMotor.Text = "Stop";
             this.btnStopMotor.UseVisualStyleBackColor = true;
             this.btnStopMotor.Click += new System.EventHandler(this.btnStopMotor_Click);
@@ -154,7 +154,7 @@ namespace xlcal_shutter_motor_control
             this.btnSetZeroPos.Location = new System.Drawing.Point(6, 124);
             this.btnSetZeroPos.Name = "btnSetZeroPos";
             this.btnSetZeroPos.Size = new System.Drawing.Size(279, 31);
-            this.btnSetZeroPos.TabIndex = 13;
+            this.btnSetZeroPos.TabIndex = 6;
             this.btnSetZeroPos.Text = "Set zero position (vertical)";
             this.btnSetZeroPos.UseVisualStyleBackColor = true;
             this.btnSetZeroPos.Click += new System.EventHandler(this.btnSetZeroPos_Click);
@@ -177,7 +177,7 @@ namespace xlcal_shutter_motor_control
             this.cbComPort.Location = new System.Drawing.Point(94, 33);
             this.cbComPort.Name = "cbComPort";
             this.cbComPort.Size = new System.Drawing.Size(191, 28);
-            this.cbComPort.TabIndex = 16;
+            this.cbComPort.TabIndex = 0;
             this.cbComPort.Click += new System.EventHandler(this.cbComPort_Click);
             // 
             // labelComPortStatus
@@ -199,7 +199,7 @@ namespace xlcal_shutter_motor_control
             this.btnOpenClosePort.Location = new System.Drawing.Point(167, 67);
             this.btnOpenClosePort.Name = "btnOpenClosePort";
             this.btnOpenClosePort.Size = new System.Drawing.Size(118, 30);
-            this.btnOpenClosePort.TabIndex = 20;
+            this.btnOpenClosePort.TabIndex = 1;
             this.btnOpenClosePort.Text = "Open";
             this.btnOpenClosePort.UseVisualStyleBackColor = true;
             this.btnOpenClosePort.Click += new System.EventHandler(this.btnOpenClosePort_Click);
@@ -215,15 +215,16 @@ namespace xlcal_shutter_motor_control
             this.labelShutterStatus.Size = new System.Drawing.Size(44, 20);
             this.labelShutterStatus.TabIndex = 26;
             this.labelShutterStatus.Text = "OFF";
+            this.labelShutterStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnStartStopControl
             // 
             this.btnStartStopControl.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnStartStopControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStartStopControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartStopControl.Location = new System.Drawing.Point(225, 95);
             this.btnStartStopControl.Name = "btnStartStopControl";
             this.btnStartStopControl.Size = new System.Drawing.Size(61, 30);
-            this.btnStartStopControl.TabIndex = 25;
+            this.btnStartStopControl.TabIndex = 11;
             this.btnStartStopControl.Text = "Start";
             this.btnStartStopControl.UseVisualStyleBackColor = true;
             this.btnStartStopControl.Click += new System.EventHandler(this.btnStartStopControl_Click);
@@ -251,7 +252,7 @@ namespace xlcal_shutter_motor_control
             0});
             this.spbOnTimeSec.Name = "spbOnTimeSec";
             this.spbOnTimeSec.Size = new System.Drawing.Size(43, 26);
-            this.spbOnTimeSec.TabIndex = 24;
+            this.spbOnTimeSec.TabIndex = 10;
             this.spbOnTimeSec.Value = new decimal(new int[] {
             30,
             0,
@@ -376,7 +377,7 @@ namespace xlcal_shutter_motor_control
             0});
             this.spbOffTimeMins.Name = "spbOffTimeMins";
             this.spbOffTimeMins.Size = new System.Drawing.Size(43, 26);
-            this.spbOffTimeMins.TabIndex = 32;
+            this.spbOffTimeMins.TabIndex = 7;
             this.spbOffTimeMins.ValueChanged += new System.EventHandler(this.spbOffTimeMins_ValueChanged);
             // 
             // spbOffTimeSec
@@ -391,7 +392,7 @@ namespace xlcal_shutter_motor_control
             0});
             this.spbOffTimeSec.Name = "spbOffTimeSec";
             this.spbOffTimeSec.Size = new System.Drawing.Size(43, 26);
-            this.spbOffTimeSec.TabIndex = 33;
+            this.spbOffTimeSec.TabIndex = 8;
             this.spbOffTimeSec.Value = new decimal(new int[] {
             30,
             0,
@@ -411,14 +412,14 @@ namespace xlcal_shutter_motor_control
             0});
             this.spbOnTimeMins.Name = "spbOnTimeMins";
             this.spbOnTimeMins.Size = new System.Drawing.Size(43, 26);
-            this.spbOnTimeMins.TabIndex = 24;
+            this.spbOnTimeMins.TabIndex = 9;
             this.spbOnTimeMins.ValueChanged += new System.EventHandler(this.spbOnTimeMins_ValueChanged);
             // 
             // pbarTimeElapsed
             // 
-            this.pbarTimeElapsed.Location = new System.Drawing.Point(118, 95);
+            this.pbarTimeElapsed.Location = new System.Drawing.Point(118, 100);
             this.pbarTimeElapsed.Name = "pbarTimeElapsed";
-            this.pbarTimeElapsed.Size = new System.Drawing.Size(101, 30);
+            this.pbarTimeElapsed.Size = new System.Drawing.Size(101, 20);
             this.pbarTimeElapsed.TabIndex = 34;
             // 
             // MainForm
@@ -431,7 +432,7 @@ namespace xlcal_shutter_motor_control
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Beam Calibration Motor Control";
+            this.Text = "Calibration Beam Control";
             ((System.ComponentModel.ISupportInitialize)(this.spbRotationAngle)).EndInit();
             this.groupboxConfig.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spbOnTimeSec)).EndInit();
