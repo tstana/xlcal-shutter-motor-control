@@ -22,7 +22,10 @@ namespace xlcal_shutter_motor_control
         private SerialPort port;
         private bool motorZeroPosFound = false;
         private bool beamOn = false;
-
+        private decimal beamOffTime = 0;
+        private decimal beamOnTime = 0;
+        private decimal seconds = 0;
+ 
         public MainForm()
         {
             InitializeComponent();
@@ -219,39 +222,51 @@ namespace xlcal_shutter_motor_control
             if (!timerMotorControl.Enabled)
             {
                 btnStartStopControl.Text = "Stop";
-                timerMotorControl.Interval = 
-                    (int)spbOffTimeMins.Value * 60000 +
-                    (int)spbOffTimeSec.Value * 1000;
+                beamOffTime = spbOffTimeMins.Value * 60 + spbOffTimeSec.Value;
+                seconds = 0;
                 timerMotorControl.Enabled = true;
             }
             else
             {
                 btnStartStopControl.Text = "Start";
                 timerMotorControl.Enabled = false;
+                pbarTimeElapsed.Value = 0;
             }
         }
 
         private void timerShutterControl_Tick(object sender, EventArgs e)
         {
-            if (beamOn)
+            ++seconds;
+
+            if (!beamOn)
             {
-                port.Write("/1D" + ToEncoderPos(90).ToString() + "R\r");
-                beamOn = false;
-                labelShutterStatus.Text = "OFF";
-                labelShutterStatus.BackColor = Color.Red;
-                timerMotorControl.Interval =
-                    (int)spbOffTimeMins.Value * 60000 +
-                    (int)spbOffTimeSec.Value * 1000;
+                pbarTimeElapsed.Value =
+                    (int)(100 * ((double)seconds / (double)beamOffTime));
+
+                if (seconds == beamOffTime)
+                {
+                    port.Write("/1P" + ToEncoderPos(90).ToString() + "R\r");
+                    beamOn = true;
+                    labelShutterStatus.Text = "ON";
+                    labelShutterStatus.BackColor = Color.DarkGreen;
+                    beamOnTime = spbOnTimeMins.Value * 60 + spbOnTimeSec.Value;
+                    seconds = 0;
+                }
             }
             else
             {
-                port.Write("/1P" + ToEncoderPos(90).ToString() + "R\r");
-                beamOn = true;
-                labelShutterStatus.Text = "ON";
-                labelShutterStatus.BackColor = Color.DarkGreen;
-                timerMotorControl.Interval =
-                    (int)spbOnTimeMins.Value * 60000 +
-                    (int)spbOnTimeSec.Value * 1000;
+                pbarTimeElapsed.Value =
+                    (int)(100 * ((double)seconds / (double)beamOnTime));
+
+                if (seconds == beamOnTime)
+                {
+                    port.Write("/1D" + ToEncoderPos(90).ToString() + "R\r");
+                    beamOn = false;
+                    labelShutterStatus.Text = "OFF";
+                    labelShutterStatus.BackColor = Color.Red;
+                    beamOffTime = spbOffTimeMins.Value * 60 + spbOffTimeSec.Value;
+                    seconds = 0;
+                }
             }
         }
 

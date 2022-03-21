@@ -56,6 +56,7 @@ namespace xlcal_shutter_motor_control
             this.spbOffTimeSec = new System.Windows.Forms.NumericUpDown();
             this.spbOnTimeMins = new System.Windows.Forms.NumericUpDown();
             this.tooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.pbarTimeElapsed = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.spbRotationAngle)).BeginInit();
             this.groupboxConfig.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spbOnTimeSec)).BeginInit();
@@ -209,7 +210,7 @@ namespace xlcal_shutter_motor_control
             this.labelShutterStatus.BackColor = System.Drawing.Color.Red;
             this.labelShutterStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelShutterStatus.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelShutterStatus.Location = new System.Drawing.Point(94, 100);
+            this.labelShutterStatus.Location = new System.Drawing.Point(68, 100);
             this.labelShutterStatus.Name = "labelShutterStatus";
             this.labelShutterStatus.Size = new System.Drawing.Size(44, 20);
             this.labelShutterStatus.TabIndex = 26;
@@ -286,6 +287,7 @@ namespace xlcal_shutter_motor_control
             // groupboxShutterCtrl
             // 
             this.groupboxShutterCtrl.BackColor = System.Drawing.SystemColors.Control;
+            this.groupboxShutterCtrl.Controls.Add(this.pbarTimeElapsed);
             this.groupboxShutterCtrl.Controls.Add(this.lblOffTime);
             this.groupboxShutterCtrl.Controls.Add(this.lblOffTimeMins);
             this.groupboxShutterCtrl.Controls.Add(this.lblOnTimeMins);
@@ -412,6 +414,13 @@ namespace xlcal_shutter_motor_control
             this.spbOnTimeMins.TabIndex = 24;
             this.spbOnTimeMins.ValueChanged += new System.EventHandler(this.spbOnTimeMins_ValueChanged);
             // 
+            // pbarTimeElapsed
+            // 
+            this.pbarTimeElapsed.Location = new System.Drawing.Point(118, 95);
+            this.pbarTimeElapsed.Name = "pbarTimeElapsed";
+            this.pbarTimeElapsed.Size = new System.Drawing.Size(101, 30);
+            this.pbarTimeElapsed.TabIndex = 34;
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -465,6 +474,7 @@ namespace xlcal_shutter_motor_control
         private System.Windows.Forms.Label lblOffTimeSec;
         private System.Windows.Forms.NumericUpDown spbOffTimeMins;
         private System.Windows.Forms.NumericUpDown spbOffTimeSec;
+        private System.Windows.Forms.ProgressBar pbarTimeElapsed;
     }
 }
 
