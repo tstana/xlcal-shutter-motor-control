@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using System.IO;
 using System.IO.Ports;
 
 
@@ -41,7 +42,13 @@ namespace xlcal_shutter_motor_control
             tooltip.SetToolTip(btnRotateCW, "Rotate clockwise.");
             tooltip.SetToolTip(btnStopMotor, "Stop motor rotation.");
             tooltip.SetToolTip(btnSetZeroPos, "Horizontal position found: " +
-                " set as motor's zero position.");
+                "set as motor's zero position.");
+            tooltip.SetToolTip(btnOpenLogfile, "Open existing log file.");
+            tooltip.SetToolTip(btnNewLogfile, "Create new log file.");
+
+            txtboxLogfile.Enabled = checkboxUseLogfile.Checked;
+            btnOpenLogfile.Enabled = checkboxUseLogfile.Checked;
+            btnNewLogfile.Enabled = checkboxUseLogfile.Checked;
 
             // Upon power-up, the motor will think it's at zero position, even
             // though it likely won't be. Due to the "features" of the
@@ -109,7 +116,7 @@ namespace xlcal_shutter_motor_control
             catch (Exception excep)
             {
                 MessageBox.Show(excep.Message,
-                    "Unexpected Exception",
+                    "Other Exception",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -319,6 +326,98 @@ namespace xlcal_shutter_motor_control
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 spbOnTimeMins.Value = 1;
+            }
+        }
+
+        private void checkboxUseLogfile_CheckedChanged(object sender, EventArgs e)
+        {
+            txtboxLogfile.Enabled = checkboxUseLogfile.Checked;
+            btnOpenLogfile.Enabled = checkboxUseLogfile.Checked;
+            btnNewLogfile.Enabled = checkboxUseLogfile.Checked;
+        }
+
+        private void textboxLogfile_TextChanged(object sender, EventArgs e)
+        {
+            tooltip.SetToolTip(txtboxLogfile, txtboxLogfile.Text);
+        }
+
+        private void btnOpenLogfile_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog d = new OpenFileDialog())
+            {
+                if (txtboxLogfile.Text.Length > 0)
+                    d.InitialDirectory =
+                        Path.GetDirectoryName(txtboxLogfile.Text);
+                else
+                    d.InitialDirectory = Path.GetTempPath();
+                d.Filter = "log files (*.log)|*.log|All files (*.*)|*.*";
+                d.FilterIndex = 2;
+
+                if (d.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (StreamWriter w =
+                            File.AppendText(d.FileName))
+                        { }
+                        txtboxLogfile.Text = d.FileName;
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        MessageBox.Show("Cannot open " + d.FileName +
+                            " for append!",
+                            "Unauthorized Access Exception",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    catch (Exception excep)
+                    {
+                        MessageBox.Show(excep.Message,
+                            "Other Exception",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void btnNewLogfile_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog d = new SaveFileDialog())
+            {
+                if (txtboxLogfile.Text.Length > 0)
+                    d.InitialDirectory =
+                        Path.GetDirectoryName(txtboxLogfile.Text);
+                else
+                    d.InitialDirectory = Path.GetTempPath();
+                d.Filter = "log files (*.log)|*.log|All files (*.*)|*.*";
+                d.FilterIndex = 1;
+                
+                if (d.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (StreamWriter w =
+                            File.AppendText(d.FileName))
+                        { }
+                        txtboxLogfile.Text = d.FileName;
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        MessageBox.Show("Cannot open " + d.FileName +
+                            " for append!",
+                            "Unauthorized Access Exception",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    catch (Exception excep)
+                    {
+                        MessageBox.Show(excep.Message,
+                            "Other Exception",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                }
             }
         }
     }
