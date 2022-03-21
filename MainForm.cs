@@ -166,7 +166,9 @@ namespace xlcal_shutter_motor_control
                     {
                         using (StreamWriter w =
                             File.AppendText(d.FileName))
-                        { }
+                        {
+                            w.WriteLine("==========;========;==========");
+                        }
                         txtboxLogfile.Text = d.FileName;
                     }
                     catch (UnauthorizedAccessException)
@@ -206,7 +208,9 @@ namespace xlcal_shutter_motor_control
                     {
                         using (StreamWriter w =
                             File.AppendText(d.FileName))
-                        { }
+                        {
+                            w.WriteLine("==========;========;==========");
+                        }
                         txtboxLogfile.Text = d.FileName;
                     }
                     catch (UnauthorizedAccessException)
@@ -238,8 +242,7 @@ namespace xlcal_shutter_motor_control
                         File.AppendText(txtboxLogfile.Text))
                     {
                         DateTime utc = DateTime.UtcNow;
-                        w.WriteLine(utc.ToString("yyyy-MM-dd HH:mm:ss") +
-                            " :: " + s);
+                        w.WriteLine(utc.ToString("yyyy-MM-dd;HH:mm:ss;") + s);
                     }
                 }
                 catch (UnauthorizedAccessException)
