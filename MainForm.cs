@@ -11,7 +11,7 @@ using System.IO;
 using System.IO.Ports;
 
 
-namespace xlcal_shutter_motor_control
+namespace CalibBeamCtrl
 {
     public partial class MainForm : Form
     {

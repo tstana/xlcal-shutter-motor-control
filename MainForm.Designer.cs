@@ -1,4 +1,4 @@
-namespace xlcal_shutter_motor_control
+namespace CalibBeamCtrl
 {
     partial class MainForm
     {

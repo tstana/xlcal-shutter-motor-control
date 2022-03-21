@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2FE447B2-76C6-4984-A00D-2F3E615E0BA0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>xlcal_shutter_motor_control</RootNamespace>
-    <AssemblyName>xlcal-shutter-motor-control</AssemblyName>
+    <RootNamespace>CalibBeamCtrl</RootNamespace>
+    <AssemblyName>CalibBeamCtrl</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -55,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

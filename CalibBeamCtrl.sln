@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xlcal-shutter-motor-control", "xlcal-shutter-motor-control.csproj", "{2FE447B2-76C6-4984-A00D-2F3E615E0BA0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalibBeamCtrl", "CalibBeamCtrl.csproj", "{2FE447B2-76C6-4984-A00D-2F3E615E0BA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

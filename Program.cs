@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace xlcal_shutter_motor_control
+namespace CalibBeamCtrl
 {
     static class Program
     {
