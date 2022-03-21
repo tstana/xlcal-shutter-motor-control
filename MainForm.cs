@@ -31,6 +31,9 @@ namespace xlcal_shutter_motor_control
         {
             InitializeComponent();
 
+            Bitmap bmp = Properties.Resources.xcalibur;
+            this.Icon = Icon.FromHandle(bmp.GetHicon());
+
             port = new SerialPort();
             port.BaudRate = 9600;
 
