@@ -43,19 +43,27 @@ namespace xlcal_shutter_motor_control
             this.labelShutterStatus = new System.Windows.Forms.Label();
             this.btnStartStopControl = new System.Windows.Forms.Button();
             this.lblOnTime = new System.Windows.Forms.Label();
-            this.spbOnTime = new System.Windows.Forms.NumericUpDown();
+            this.spbOnTimeSec = new System.Windows.Forms.NumericUpDown();
             this.lbl1 = new System.Windows.Forms.Label();
             this.groupboxComms = new System.Windows.Forms.GroupBox();
             this.groupboxShutterCtrl = new System.Windows.Forms.GroupBox();
+            this.lblOnTimeMins = new System.Windows.Forms.Label();
+            this.lblOnTimeSec = new System.Windows.Forms.Label();
+            this.spbOnTimeMins = new System.Windows.Forms.NumericUpDown();
             this.tooltip = new System.Windows.Forms.ToolTip(this.components);
             this.lblOffTime = new System.Windows.Forms.Label();
-            this.spbOffTime = new System.Windows.Forms.NumericUpDown();
+            this.lblOffTimeMins = new System.Windows.Forms.Label();
+            this.lblOffTimeSec = new System.Windows.Forms.Label();
+            this.spbOffTimeMins = new System.Windows.Forms.NumericUpDown();
+            this.spbOffTimeSec = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.spbRotationAngle)).BeginInit();
             this.groupboxConfig.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spbOnTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spbOnTimeSec)).BeginInit();
             this.groupboxComms.SuspendLayout();
             this.groupboxShutterCtrl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spbOffTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spbOnTimeMins)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spbOffTimeMins)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spbOffTimeSec)).BeginInit();
             this.SuspendLayout();
             // 
             // timerMotorControl
@@ -196,7 +204,7 @@ namespace xlcal_shutter_motor_control
             this.labelShutterStatus.BackColor = System.Drawing.Color.Red;
             this.labelShutterStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelShutterStatus.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelShutterStatus.Location = new System.Drawing.Point(67, 99);
+            this.labelShutterStatus.Location = new System.Drawing.Point(94, 100);
             this.labelShutterStatus.Name = "labelShutterStatus";
             this.labelShutterStatus.Size = new System.Drawing.Size(44, 20);
             this.labelShutterStatus.TabIndex = 26;
@@ -206,9 +214,9 @@ namespace xlcal_shutter_motor_control
             // 
             this.btnStartStopControl.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnStartStopControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStartStopControl.Location = new System.Drawing.Point(170, 95);
+            this.btnStartStopControl.Location = new System.Drawing.Point(225, 95);
             this.btnStartStopControl.Name = "btnStartStopControl";
-            this.btnStartStopControl.Size = new System.Drawing.Size(89, 30);
+            this.btnStartStopControl.Size = new System.Drawing.Size(61, 30);
             this.btnStartStopControl.TabIndex = 25;
             this.btnStartStopControl.Text = "Start";
             this.btnStartStopControl.UseVisualStyleBackColor = true;
@@ -219,42 +227,38 @@ namespace xlcal_shutter_motor_control
             this.lblOnTime.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblOnTime.AutoSize = true;
             this.lblOnTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblOnTime.Location = new System.Drawing.Point(6, 33);
+            this.lblOnTime.Location = new System.Drawing.Point(7, 63);
             this.lblOnTime.Name = "lblOnTime";
-            this.lblOnTime.Size = new System.Drawing.Size(96, 20);
+            this.lblOnTime.Size = new System.Drawing.Size(74, 20);
             this.lblOnTime.TabIndex = 23;
-            this.lblOnTime.Text = "Time ON (s):";
+            this.lblOnTime.Text = "Time ON:";
             // 
-            // spbOnTime
+            // spbOnTimeSec
             // 
-            this.spbOnTime.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.spbOnTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spbOnTime.Location = new System.Drawing.Point(170, 31);
-            this.spbOnTime.Maximum = new decimal(new int[] {
-            60,
+            this.spbOnTimeSec.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.spbOnTimeSec.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spbOnTimeSec.Location = new System.Drawing.Point(172, 61);
+            this.spbOnTimeSec.Maximum = new decimal(new int[] {
+            59,
             0,
             0,
             0});
-            this.spbOnTime.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.spbOnTime.Name = "spbOnTime";
-            this.spbOnTime.Size = new System.Drawing.Size(89, 26);
-            this.spbOnTime.TabIndex = 24;
-            this.spbOnTime.Value = new decimal(new int[] {
+            this.spbOnTimeSec.Name = "spbOnTimeSec";
+            this.spbOnTimeSec.Size = new System.Drawing.Size(43, 26);
+            this.spbOnTimeSec.TabIndex = 24;
+            this.spbOnTimeSec.Value = new decimal(new int[] {
             30,
             0,
             0,
             0});
+            this.spbOnTimeSec.ValueChanged += new System.EventHandler(this.spbOnTimeSec_ValueChanged);
             // 
             // lbl1
             // 
             this.lbl1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl1.AutoSize = true;
             this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lbl1.Location = new System.Drawing.Point(6, 99);
+            this.lbl1.Location = new System.Drawing.Point(7, 100);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(55, 20);
             this.lbl1.TabIndex = 23;
@@ -278,10 +282,16 @@ namespace xlcal_shutter_motor_control
             // 
             this.groupboxShutterCtrl.BackColor = System.Drawing.SystemColors.Control;
             this.groupboxShutterCtrl.Controls.Add(this.lblOffTime);
+            this.groupboxShutterCtrl.Controls.Add(this.lblOffTimeMins);
+            this.groupboxShutterCtrl.Controls.Add(this.lblOnTimeMins);
+            this.groupboxShutterCtrl.Controls.Add(this.lblOffTimeSec);
+            this.groupboxShutterCtrl.Controls.Add(this.lblOnTimeSec);
+            this.groupboxShutterCtrl.Controls.Add(this.spbOffTimeMins);
             this.groupboxShutterCtrl.Controls.Add(this.lblOnTime);
+            this.groupboxShutterCtrl.Controls.Add(this.spbOffTimeSec);
             this.groupboxShutterCtrl.Controls.Add(this.labelShutterStatus);
-            this.groupboxShutterCtrl.Controls.Add(this.spbOffTime);
-            this.groupboxShutterCtrl.Controls.Add(this.spbOnTime);
+            this.groupboxShutterCtrl.Controls.Add(this.spbOnTimeMins);
+            this.groupboxShutterCtrl.Controls.Add(this.spbOnTimeSec);
             this.groupboxShutterCtrl.Controls.Add(this.btnStartStopControl);
             this.groupboxShutterCtrl.Controls.Add(this.lbl1);
             this.groupboxShutterCtrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -292,40 +302,110 @@ namespace xlcal_shutter_motor_control
             this.groupboxShutterCtrl.TabStop = false;
             this.groupboxShutterCtrl.Text = "Calibration Beam";
             // 
+            // lblOnTimeMins
+            // 
+            this.lblOnTimeMins.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblOnTimeMins.AutoSize = true;
+            this.lblOnTimeMins.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblOnTimeMins.Location = new System.Drawing.Point(144, 63);
+            this.lblOnTimeMins.Name = "lblOnTimeMins";
+            this.lblOnTimeMins.Size = new System.Drawing.Size(22, 20);
+            this.lblOnTimeMins.TabIndex = 23;
+            this.lblOnTimeMins.Text = "m";
+            // 
+            // lblOnTimeSec
+            // 
+            this.lblOnTimeSec.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblOnTimeSec.AutoSize = true;
+            this.lblOnTimeSec.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblOnTimeSec.Location = new System.Drawing.Point(222, 63);
+            this.lblOnTimeSec.Name = "lblOnTimeSec";
+            this.lblOnTimeSec.Size = new System.Drawing.Size(17, 20);
+            this.lblOnTimeSec.TabIndex = 23;
+            this.lblOnTimeSec.Text = "s";
+            // 
+            // spbOnTimeMins
+            // 
+            this.spbOnTimeMins.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.spbOnTimeMins.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spbOnTimeMins.Location = new System.Drawing.Point(95, 61);
+            this.spbOnTimeMins.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.spbOnTimeMins.Name = "spbOnTimeMins";
+            this.spbOnTimeMins.Size = new System.Drawing.Size(43, 26);
+            this.spbOnTimeMins.TabIndex = 24;
+            this.spbOnTimeMins.ValueChanged += new System.EventHandler(this.spbOnTimeMins_ValueChanged);
+            // 
             // lblOffTime
             // 
             this.lblOffTime.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblOffTime.AutoSize = true;
             this.lblOffTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblOffTime.Location = new System.Drawing.Point(6, 66);
+            this.lblOffTime.Location = new System.Drawing.Point(7, 26);
             this.lblOffTime.Name = "lblOffTime";
-            this.lblOffTime.Size = new System.Drawing.Size(105, 20);
-            this.lblOffTime.TabIndex = 23;
-            this.lblOffTime.Text = "Time OFF (s):";
+            this.lblOffTime.Size = new System.Drawing.Size(83, 20);
+            this.lblOffTime.TabIndex = 29;
+            this.lblOffTime.Text = "Time OFF:";
             // 
-            // spbOffTime
+            // lblOffTimeMins
             // 
-            this.spbOffTime.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.spbOffTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spbOffTime.Location = new System.Drawing.Point(170, 63);
-            this.spbOffTime.Maximum = new decimal(new int[] {
+            this.lblOffTimeMins.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblOffTimeMins.AutoSize = true;
+            this.lblOffTimeMins.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblOffTimeMins.Location = new System.Drawing.Point(144, 26);
+            this.lblOffTimeMins.Name = "lblOffTimeMins";
+            this.lblOffTimeMins.Size = new System.Drawing.Size(22, 20);
+            this.lblOffTimeMins.TabIndex = 30;
+            this.lblOffTimeMins.Text = "m";
+            // 
+            // lblOffTimeSec
+            // 
+            this.lblOffTimeSec.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblOffTimeSec.AutoSize = true;
+            this.lblOffTimeSec.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblOffTimeSec.Location = new System.Drawing.Point(222, 26);
+            this.lblOffTimeSec.Name = "lblOffTimeSec";
+            this.lblOffTimeSec.Size = new System.Drawing.Size(17, 20);
+            this.lblOffTimeSec.TabIndex = 31;
+            this.lblOffTimeSec.Text = "s";
+            // 
+            // spbOffTimeMins
+            // 
+            this.spbOffTimeMins.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.spbOffTimeMins.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spbOffTimeMins.Location = new System.Drawing.Point(95, 24);
+            this.spbOffTimeMins.Maximum = new decimal(new int[] {
             60,
             0,
             0,
             0});
-            this.spbOffTime.Minimum = new decimal(new int[] {
-            10,
+            this.spbOffTimeMins.Name = "spbOffTimeMins";
+            this.spbOffTimeMins.Size = new System.Drawing.Size(43, 26);
+            this.spbOffTimeMins.TabIndex = 32;
+            this.spbOffTimeMins.ValueChanged += new System.EventHandler(this.spbOffTimeMins_ValueChanged);
+            // 
+            // spbOffTimeSec
+            // 
+            this.spbOffTimeSec.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.spbOffTimeSec.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spbOffTimeSec.Location = new System.Drawing.Point(172, 24);
+            this.spbOffTimeSec.Maximum = new decimal(new int[] {
+            59,
             0,
             0,
             0});
-            this.spbOffTime.Name = "spbOffTime";
-            this.spbOffTime.Size = new System.Drawing.Size(89, 26);
-            this.spbOffTime.TabIndex = 24;
-            this.spbOffTime.Value = new decimal(new int[] {
+            this.spbOffTimeSec.Name = "spbOffTimeSec";
+            this.spbOffTimeSec.Size = new System.Drawing.Size(43, 26);
+            this.spbOffTimeSec.TabIndex = 33;
+            this.spbOffTimeSec.Value = new decimal(new int[] {
             30,
             0,
             0,
             0});
+            this.spbOffTimeSec.ValueChanged += new System.EventHandler(this.spbOffTimeSec_ValueChanged);
             // 
             // MainForm
             // 
@@ -340,12 +420,14 @@ namespace xlcal_shutter_motor_control
             this.Text = "Beam Calibration Motor Control";
             ((System.ComponentModel.ISupportInitialize)(this.spbRotationAngle)).EndInit();
             this.groupboxConfig.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.spbOnTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spbOnTimeSec)).EndInit();
             this.groupboxComms.ResumeLayout(false);
             this.groupboxComms.PerformLayout();
             this.groupboxShutterCtrl.ResumeLayout(false);
             this.groupboxShutterCtrl.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spbOffTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spbOnTimeMins)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spbOffTimeMins)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spbOffTimeSec)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -362,7 +444,7 @@ namespace xlcal_shutter_motor_control
         private System.Windows.Forms.Label labelShutterStatus;
         private System.Windows.Forms.Button btnStartStopControl;
         private System.Windows.Forms.Label lblOnTime;
-        private System.Windows.Forms.NumericUpDown spbOnTime;
+        private System.Windows.Forms.NumericUpDown spbOnTimeSec;
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.GroupBox groupboxComms;
         private System.Windows.Forms.GroupBox groupboxShutterCtrl;
@@ -370,8 +452,14 @@ namespace xlcal_shutter_motor_control
         private System.Windows.Forms.ToolTip tooltip;
         private System.Windows.Forms.Button btnStopMotor;
         private System.Windows.Forms.Button btnSetZeroPos;
+        private System.Windows.Forms.Label lblOnTimeSec;
+        private System.Windows.Forms.Label lblOnTimeMins;
+        private System.Windows.Forms.NumericUpDown spbOnTimeMins;
         private System.Windows.Forms.Label lblOffTime;
-        private System.Windows.Forms.NumericUpDown spbOffTime;
+        private System.Windows.Forms.Label lblOffTimeMins;
+        private System.Windows.Forms.Label lblOffTimeSec;
+        private System.Windows.Forms.NumericUpDown spbOffTimeMins;
+        private System.Windows.Forms.NumericUpDown spbOffTimeSec;
     }
 }
 

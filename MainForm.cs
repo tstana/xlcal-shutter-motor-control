@@ -216,7 +216,9 @@ namespace xlcal_shutter_motor_control
             if (!timerMotorControl.Enabled)
             {
                 btnStartStopControl.Text = "Stop";
-                timerMotorControl.Interval = (int)spbOffTime.Value * 1000;
+                timerMotorControl.Interval = 
+                    (int)spbOffTimeMins.Value * 60000 +
+                    (int)spbOffTimeSec.Value * 1000;
                 timerMotorControl.Enabled = true;
             }
             else
@@ -234,7 +236,9 @@ namespace xlcal_shutter_motor_control
                 beamOn = false;
                 labelShutterStatus.Text = "OFF";
                 labelShutterStatus.BackColor = Color.Red;
-                timerMotorControl.Interval = (int)spbOffTime.Value * 1000;
+                timerMotorControl.Interval =
+                    (int)spbOffTimeMins.Value * 60000 +
+                    (int)spbOffTimeSec.Value * 1000;
             }
             else
             {
@@ -242,7 +246,61 @@ namespace xlcal_shutter_motor_control
                 beamOn = true;
                 labelShutterStatus.Text = "ON";
                 labelShutterStatus.BackColor = Color.DarkGreen;
-                timerMotorControl.Interval = (int)spbOnTime.Value * 1000;
+                timerMotorControl.Interval =
+                    (int)spbOnTimeMins.Value * 60000 +
+                    (int)spbOnTimeSec.Value * 1000;
+            }
+        }
+
+        private void spbOffTimeSec_ValueChanged(object sender, EventArgs e)
+        {
+            if ((spbOffTimeMins.Value == 0) && (spbOffTimeSec.Value < 10))
+            {
+                MessageBox.Show("Beam cover OFF time cannot be less than 10 s," +
+                    " to account for the beam cover rotation time.",
+                    "Warning",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                spbOffTimeSec.Value = 10;
+            }
+        }
+
+        private void spbOnTimeSec_ValueChanged(object sender, EventArgs e)
+        {
+            if ((spbOnTimeMins.Value == 0) && (spbOnTimeSec.Value < 10))
+            {
+                MessageBox.Show("Beam cover ON time cannot be less than 10 s," +
+                    " to account for the beam cover rotation time.",
+                    "Warning",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                spbOnTimeSec.Value = 10;
+            }
+        }
+
+        private void spbOffTimeMins_ValueChanged(object sender, EventArgs e)
+        {
+            if ((spbOffTimeSec.Value < 10) && (spbOffTimeMins.Value < 1))
+            {
+                MessageBox.Show("Beam cover OFF time cannot be less than 10 s," +
+                    " to account for the beam cover rotation time.",
+                    "Warning",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                spbOffTimeMins.Value = 1;
+            }
+        }
+
+        private void spbOnTimeMins_ValueChanged(object sender, EventArgs e)
+        {
+            if ((spbOnTimeSec.Value < 10) && (spbOnTimeMins.Value < 1))
+            {
+                MessageBox.Show("Beam cover ON time cannot be less than 10 s," +
+                    " to account for the beam cover rotation time.",
+                    "Warning",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                spbOnTimeMins.Value = 1;
             }
         }
     }
