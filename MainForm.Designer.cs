@@ -29,7 +29,7 @@ namespace xlcal_shutter_motor_control
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.timerShutterControl = new System.Windows.Forms.Timer(this.components);
+            this.timerMotorControl = new System.Windows.Forms.Timer(this.components);
             this.spbRotationAngle = new System.Windows.Forms.NumericUpDown();
             this.btnRotateCW = new System.Windows.Forms.Button();
             this.groupboxConfig = new System.Windows.Forms.GroupBox();
@@ -55,10 +55,10 @@ namespace xlcal_shutter_motor_control
             this.groupboxShutterCtrl.SuspendLayout();
             this.SuspendLayout();
             // 
-            // timerShutterControl
+            // timerMotorControl
             // 
-            this.timerShutterControl.Interval = 1000;
-            this.timerShutterControl.Tick += new System.EventHandler(this.timerShutterControl_Tick);
+            this.timerMotorControl.Interval = 1000;
+            this.timerMotorControl.Tick += new System.EventHandler(this.timerShutterControl_Tick);
             // 
             // spbRotationAngle
             // 
@@ -253,9 +253,9 @@ namespace xlcal_shutter_motor_control
             this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lbl1.Location = new System.Drawing.Point(6, 72);
             this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(66, 20);
+            this.lbl1.Size = new System.Drawing.Size(55, 20);
             this.lbl1.TabIndex = 23;
-            this.lbl1.Text = "Shutter:";
+            this.lbl1.Text = "Beam:";
             // 
             // groupboxComms
             // 
@@ -285,7 +285,7 @@ namespace xlcal_shutter_motor_control
             this.groupboxShutterCtrl.Size = new System.Drawing.Size(292, 103);
             this.groupboxShutterCtrl.TabIndex = 28;
             this.groupboxShutterCtrl.TabStop = false;
-            this.groupboxShutterCtrl.Text = "Shutter Control";
+            this.groupboxShutterCtrl.Text = "Calibration Beam";
             // 
             // MainForm
             // 
@@ -297,7 +297,7 @@ namespace xlcal_shutter_motor_control
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Shutter Motor Control";
+            this.Text = "Beam Calibration Motor Control";
             ((System.ComponentModel.ISupportInitialize)(this.spbRotationAngle)).EndInit();
             this.groupboxConfig.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spbOnOffTime)).EndInit();
@@ -310,7 +310,7 @@ namespace xlcal_shutter_motor_control
         }
 
         #endregion
-        private System.Windows.Forms.Timer timerShutterControl;
+        private System.Windows.Forms.Timer timerMotorControl;
         private System.Windows.Forms.NumericUpDown spbRotationAngle;
         private System.Windows.Forms.Button btnRotateCW;
         private System.Windows.Forms.GroupBox groupboxConfig;

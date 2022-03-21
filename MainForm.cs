@@ -14,13 +14,14 @@ namespace xlcal_shutter_motor_control
 {
     public partial class MainForm : Form
     {
-        private SerialPort port;
-        private bool shutterOpen = false;
-
         private const decimal NumMicrostepsPerStep = 256;
         private const decimal NumMotorStepsPerRevolution =
             400 * NumMicrostepsPerStep;
         private const decimal NumEncoderPulsesPerRevolution = 1600;
+
+        private SerialPort port;
+        private bool motorZeroPosFound = false;
+        private bool beamOn = false;
 
         public MainForm()
         {
@@ -65,9 +66,9 @@ namespace xlcal_shutter_motor_control
             // Exit early from function if port is open
             if (port.IsOpen)
             {
-                if (timerShutterControl.Enabled)
+                if (timerMotorControl.Enabled)
                 {
-                    MessageBox.Show("Please stop shutter control before " +
+                    MessageBox.Show("Please stop motor control before " +
                         "closing serial port!",
                         "Warning",
                         MessageBoxButtons.OK,
@@ -185,6 +186,8 @@ namespace xlcal_shutter_motor_control
             }
 
             port.Write("/1z0R\r");
+
+            motorZeroPosFound = true;
         }
 
         private void btnStartStopControl_Click(object sender, EventArgs e)
@@ -198,32 +201,44 @@ namespace xlcal_shutter_motor_control
                 return;
             }
 
-            if (!timerShutterControl.Enabled)
+            if (!motorZeroPosFound)
+            {
+                MessageBox.Show("You haven't found the motor's \"zero\" " +
+                    "position yet. Please bring the beam cover horizontal " +
+                    "using the controls above and click the \"Set Zero" +
+                    "Position\" button.",
+                    "Zero position not found",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!timerMotorControl.Enabled)
             {
                 btnStartStopControl.Text = "Stop";
-                timerShutterControl.Interval = (int)spbOnOffTime.Value * 60000;
-                timerShutterControl.Enabled = true;
+                timerMotorControl.Interval = (int)spbOnOffTime.Value * 60000;
+                timerMotorControl.Enabled = true;
             }
             else
             {
                 btnStartStopControl.Text = "Start";
-                timerShutterControl.Enabled = false;
+                timerMotorControl.Enabled = false;
             }
         }
 
         private void timerShutterControl_Tick(object sender, EventArgs e)
         {
-            if (shutterOpen)
+            if (beamOn)
             {
                 port.Write("/1D" + ToEncoderPos(90).ToString() + "R\r");
-                shutterOpen = false;
+                beamOn = false;
                 labelShutterStatus.Text = "OFF";
                 labelShutterStatus.BackColor = Color.Red;
             }
             else
             {
                 port.Write("/1P" + ToEncoderPos(90).ToString() + "R\r");
-                shutterOpen = true;
+                beamOn = true;
                 labelShutterStatus.Text = "ON";
                 labelShutterStatus.BackColor = Color.DarkGreen;
             }
