@@ -100,7 +100,7 @@ namespace CalibBeamCtrl
             0});
             this.spbRotationAngle.Name = "spbRotationAngle";
             this.spbRotationAngle.Size = new System.Drawing.Size(47, 20);
-            this.spbRotationAngle.TabIndex = 3;
+            this.spbRotationAngle.TabIndex = 7;
             this.spbRotationAngle.Value = new decimal(new int[] {
             5,
             0,
@@ -114,7 +114,7 @@ namespace CalibBeamCtrl
             this.btnRotateCW.Location = new System.Drawing.Point(145, 26);
             this.btnRotateCW.Name = "btnRotateCW";
             this.btnRotateCW.Size = new System.Drawing.Size(80, 25);
-            this.btnRotateCW.TabIndex = 4;
+            this.btnRotateCW.TabIndex = 8;
             this.btnRotateCW.Text = "Rotate >>";
             this.btnRotateCW.UseVisualStyleBackColor = true;
             this.btnRotateCW.Click += new System.EventHandler(this.btnRotateCW_Click);
@@ -130,7 +130,7 @@ namespace CalibBeamCtrl
             this.groupboxConfig.Location = new System.Drawing.Point(13, 187);
             this.groupboxConfig.Name = "groupboxConfig";
             this.groupboxConfig.Size = new System.Drawing.Size(233, 129);
-            this.groupboxConfig.TabIndex = 14;
+            this.groupboxConfig.TabIndex = 255;
             this.groupboxConfig.TabStop = false;
             this.groupboxConfig.Text = "Configure Motor Positions";
             // 
@@ -141,7 +141,7 @@ namespace CalibBeamCtrl
             this.btnRotateCCW.Location = new System.Drawing.Point(6, 26);
             this.btnRotateCCW.Name = "btnRotateCCW";
             this.btnRotateCCW.Size = new System.Drawing.Size(80, 25);
-            this.btnRotateCCW.TabIndex = 2;
+            this.btnRotateCCW.TabIndex = 6;
             this.btnRotateCCW.Text = "<< Rotate";
             this.btnRotateCCW.UseVisualStyleBackColor = true;
             this.btnRotateCCW.Click += new System.EventHandler(this.btnRotateCCW_Click);
@@ -153,7 +153,7 @@ namespace CalibBeamCtrl
             this.btnStopMotor.Location = new System.Drawing.Point(92, 61);
             this.btnStopMotor.Name = "btnStopMotor";
             this.btnStopMotor.Size = new System.Drawing.Size(47, 25);
-            this.btnStopMotor.TabIndex = 5;
+            this.btnStopMotor.TabIndex = 9;
             this.btnStopMotor.Text = "Stop";
             this.btnStopMotor.UseVisualStyleBackColor = true;
             this.btnStopMotor.Click += new System.EventHandler(this.btnStopMotor_Click);
@@ -165,7 +165,7 @@ namespace CalibBeamCtrl
             this.btnSetZeroPos.Location = new System.Drawing.Point(6, 95);
             this.btnSetZeroPos.Name = "btnSetZeroPos";
             this.btnSetZeroPos.Size = new System.Drawing.Size(219, 25);
-            this.btnSetZeroPos.TabIndex = 6;
+            this.btnSetZeroPos.TabIndex = 10;
             this.btnSetZeroPos.Text = "Set zero position (vertical)";
             this.btnSetZeroPos.UseVisualStyleBackColor = true;
             this.btnSetZeroPos.Click += new System.EventHandler(this.btnSetZeroPos_Click);
@@ -177,7 +177,7 @@ namespace CalibBeamCtrl
             this.lblComPort.Location = new System.Drawing.Point(6, 22);
             this.lblComPort.Name = "lblComPort";
             this.lblComPort.Size = new System.Drawing.Size(56, 13);
-            this.lblComPort.TabIndex = 15;
+            this.lblComPort.TabIndex = 255;
             this.lblComPort.Text = "COM Port:";
             this.lblComPort.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -199,7 +199,7 @@ namespace CalibBeamCtrl
             this.labelComPortStatus.Location = new System.Drawing.Point(9, 55);
             this.labelComPortStatus.Name = "labelComPortStatus";
             this.labelComPortStatus.Size = new System.Drawing.Size(131, 20);
-            this.labelComPortStatus.TabIndex = 17;
+            this.labelComPortStatus.TabIndex = 255;
             this.labelComPortStatus.Text = "Not connected";
             this.labelComPortStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -223,7 +223,7 @@ namespace CalibBeamCtrl
             this.labelShutterStatus.Location = new System.Drawing.Point(49, 88);
             this.labelShutterStatus.Name = "labelShutterStatus";
             this.labelShutterStatus.Size = new System.Drawing.Size(44, 20);
-            this.labelShutterStatus.TabIndex = 26;
+            this.labelShutterStatus.TabIndex = 255;
             this.labelShutterStatus.Text = "OFF";
             this.labelShutterStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -234,7 +234,7 @@ namespace CalibBeamCtrl
             this.btnStartStopControl.Location = new System.Drawing.Point(184, 86);
             this.btnStartStopControl.Name = "btnStartStopControl";
             this.btnStartStopControl.Size = new System.Drawing.Size(44, 25);
-            this.btnStartStopControl.TabIndex = 11;
+            this.btnStartStopControl.TabIndex = 15;
             this.btnStartStopControl.Text = "Start";
             this.btnStartStopControl.UseVisualStyleBackColor = true;
             this.btnStartStopControl.Click += new System.EventHandler(this.btnStartStopControl_Click);
@@ -247,7 +247,7 @@ namespace CalibBeamCtrl
             this.lblOnTime.Location = new System.Drawing.Point(6, 56);
             this.lblOnTime.Name = "lblOnTime";
             this.lblOnTime.Size = new System.Drawing.Size(52, 13);
-            this.lblOnTime.TabIndex = 23;
+            this.lblOnTime.TabIndex = 255;
             this.lblOnTime.Text = "Time ON:";
             // 
             // spbOnTimeSec
@@ -262,7 +262,7 @@ namespace CalibBeamCtrl
             0});
             this.spbOnTimeSec.Name = "spbOnTimeSec";
             this.spbOnTimeSec.Size = new System.Drawing.Size(43, 20);
-            this.spbOnTimeSec.TabIndex = 10;
+            this.spbOnTimeSec.TabIndex = 14;
             this.spbOnTimeSec.Value = new decimal(new int[] {
             30,
             0,
@@ -278,7 +278,7 @@ namespace CalibBeamCtrl
             this.lbl1.Location = new System.Drawing.Point(6, 93);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(37, 13);
-            this.lbl1.TabIndex = 23;
+            this.lbl1.TabIndex = 255;
             this.lbl1.Text = "Beam:";
             // 
             // groupboxComms
@@ -291,7 +291,7 @@ namespace CalibBeamCtrl
             this.groupboxComms.Location = new System.Drawing.Point(13, 12);
             this.groupboxComms.Name = "groupboxComms";
             this.groupboxComms.Size = new System.Drawing.Size(233, 86);
-            this.groupboxComms.TabIndex = 27;
+            this.groupboxComms.TabIndex = 255;
             this.groupboxComms.TabStop = false;
             this.groupboxComms.Text = "Serial Port";
             // 
@@ -316,7 +316,7 @@ namespace CalibBeamCtrl
             this.groupboxShutterCtrl.Location = new System.Drawing.Point(12, 322);
             this.groupboxShutterCtrl.Name = "groupboxShutterCtrl";
             this.groupboxShutterCtrl.Size = new System.Drawing.Size(233, 117);
-            this.groupboxShutterCtrl.TabIndex = 28;
+            this.groupboxShutterCtrl.TabIndex = 255;
             this.groupboxShutterCtrl.TabStop = false;
             this.groupboxShutterCtrl.Text = "Calibration Beam";
             // 
@@ -325,7 +325,7 @@ namespace CalibBeamCtrl
             this.pbarTimeElapsed.Location = new System.Drawing.Point(100, 88);
             this.pbarTimeElapsed.Name = "pbarTimeElapsed";
             this.pbarTimeElapsed.Size = new System.Drawing.Size(78, 21);
-            this.pbarTimeElapsed.TabIndex = 34;
+            this.pbarTimeElapsed.TabIndex = 255;
             // 
             // lblOffTime
             // 
@@ -335,7 +335,7 @@ namespace CalibBeamCtrl
             this.lblOffTime.Location = new System.Drawing.Point(6, 24);
             this.lblOffTime.Name = "lblOffTime";
             this.lblOffTime.Size = new System.Drawing.Size(56, 13);
-            this.lblOffTime.TabIndex = 29;
+            this.lblOffTime.TabIndex = 255;
             this.lblOffTime.Text = "Time OFF:";
             // 
             // lblOffTimeMins
@@ -346,7 +346,7 @@ namespace CalibBeamCtrl
             this.lblOffTimeMins.Location = new System.Drawing.Point(117, 24);
             this.lblOffTimeMins.Name = "lblOffTimeMins";
             this.lblOffTimeMins.Size = new System.Drawing.Size(15, 13);
-            this.lblOffTimeMins.TabIndex = 30;
+            this.lblOffTimeMins.TabIndex = 255;
             this.lblOffTimeMins.Text = "m";
             // 
             // lblOnTimeMins
@@ -357,7 +357,7 @@ namespace CalibBeamCtrl
             this.lblOnTimeMins.Location = new System.Drawing.Point(117, 56);
             this.lblOnTimeMins.Name = "lblOnTimeMins";
             this.lblOnTimeMins.Size = new System.Drawing.Size(15, 13);
-            this.lblOnTimeMins.TabIndex = 23;
+            this.lblOnTimeMins.TabIndex = 255;
             this.lblOnTimeMins.Text = "m";
             // 
             // lblOffTimeSec
@@ -368,7 +368,7 @@ namespace CalibBeamCtrl
             this.lblOffTimeSec.Location = new System.Drawing.Point(187, 24);
             this.lblOffTimeSec.Name = "lblOffTimeSec";
             this.lblOffTimeSec.Size = new System.Drawing.Size(12, 13);
-            this.lblOffTimeSec.TabIndex = 31;
+            this.lblOffTimeSec.TabIndex = 255;
             this.lblOffTimeSec.Text = "s";
             // 
             // lblOnTimeSec
@@ -379,7 +379,7 @@ namespace CalibBeamCtrl
             this.lblOnTimeSec.Location = new System.Drawing.Point(187, 56);
             this.lblOnTimeSec.Name = "lblOnTimeSec";
             this.lblOnTimeSec.Size = new System.Drawing.Size(12, 13);
-            this.lblOnTimeSec.TabIndex = 23;
+            this.lblOnTimeSec.TabIndex = 255;
             this.lblOnTimeSec.Text = "s";
             // 
             // spbOffTimeMins
@@ -394,7 +394,7 @@ namespace CalibBeamCtrl
             0});
             this.spbOffTimeMins.Name = "spbOffTimeMins";
             this.spbOffTimeMins.Size = new System.Drawing.Size(43, 20);
-            this.spbOffTimeMins.TabIndex = 7;
+            this.spbOffTimeMins.TabIndex = 11;
             this.spbOffTimeMins.ValueChanged += new System.EventHandler(this.spbOffTimeMins_ValueChanged);
             // 
             // spbOffTimeSec
@@ -409,7 +409,7 @@ namespace CalibBeamCtrl
             0});
             this.spbOffTimeSec.Name = "spbOffTimeSec";
             this.spbOffTimeSec.Size = new System.Drawing.Size(43, 20);
-            this.spbOffTimeSec.TabIndex = 8;
+            this.spbOffTimeSec.TabIndex = 12;
             this.spbOffTimeSec.Value = new decimal(new int[] {
             30,
             0,
@@ -429,7 +429,7 @@ namespace CalibBeamCtrl
             0});
             this.spbOnTimeMins.Name = "spbOnTimeMins";
             this.spbOnTimeMins.Size = new System.Drawing.Size(43, 20);
-            this.spbOnTimeMins.TabIndex = 9;
+            this.spbOnTimeMins.TabIndex = 13;
             this.spbOnTimeMins.ValueChanged += new System.EventHandler(this.spbOnTimeMins_ValueChanged);
             // 
             // groupboxLogfile
@@ -442,7 +442,7 @@ namespace CalibBeamCtrl
             this.groupboxLogfile.Location = new System.Drawing.Point(13, 105);
             this.groupboxLogfile.Name = "groupboxLogfile";
             this.groupboxLogfile.Size = new System.Drawing.Size(233, 76);
-            this.groupboxLogfile.TabIndex = 29;
+            this.groupboxLogfile.TabIndex = 255;
             this.groupboxLogfile.TabStop = false;
             this.groupboxLogfile.Text = "Log File";
             // 
@@ -451,7 +451,7 @@ namespace CalibBeamCtrl
             this.txtboxLogfile.Location = new System.Drawing.Point(56, 22);
             this.txtboxLogfile.Name = "txtboxLogfile";
             this.txtboxLogfile.Size = new System.Drawing.Size(169, 20);
-            this.txtboxLogfile.TabIndex = 0;
+            this.txtboxLogfile.TabIndex = 3;
             this.txtboxLogfile.TextChanged += new System.EventHandler(this.textboxLogfile_TextChanged);
             // 
             // btnOpenLogfile
@@ -460,7 +460,7 @@ namespace CalibBeamCtrl
             this.btnOpenLogfile.Location = new System.Drawing.Point(103, 47);
             this.btnOpenLogfile.Name = "btnOpenLogfile";
             this.btnOpenLogfile.Size = new System.Drawing.Size(58, 23);
-            this.btnOpenLogfile.TabIndex = 1;
+            this.btnOpenLogfile.TabIndex = 4;
             this.btnOpenLogfile.Text = "Open...";
             this.btnOpenLogfile.UseVisualStyleBackColor = true;
             this.btnOpenLogfile.Click += new System.EventHandler(this.btnOpenLogfile_Click);
@@ -484,7 +484,7 @@ namespace CalibBeamCtrl
             this.btnNewLogfile.Location = new System.Drawing.Point(167, 47);
             this.btnNewLogfile.Name = "btnNewLogfile";
             this.btnNewLogfile.Size = new System.Drawing.Size(58, 23);
-            this.btnNewLogfile.TabIndex = 1;
+            this.btnNewLogfile.TabIndex = 5;
             this.btnNewLogfile.Text = "New...";
             this.btnNewLogfile.UseVisualStyleBackColor = true;
             this.btnNewLogfile.Click += new System.EventHandler(this.btnNewLogfile_Click);
