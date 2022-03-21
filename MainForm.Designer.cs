@@ -127,7 +127,7 @@ namespace CalibBeamCtrl
             this.groupboxConfig.Controls.Add(this.btnRotateCW);
             this.groupboxConfig.Controls.Add(this.spbRotationAngle);
             this.groupboxConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupboxConfig.Location = new System.Drawing.Point(13, 214);
+            this.groupboxConfig.Location = new System.Drawing.Point(13, 187);
             this.groupboxConfig.Name = "groupboxConfig";
             this.groupboxConfig.Size = new System.Drawing.Size(233, 129);
             this.groupboxConfig.TabIndex = 14;
@@ -313,7 +313,7 @@ namespace CalibBeamCtrl
             this.groupboxShutterCtrl.Controls.Add(this.btnStartStopControl);
             this.groupboxShutterCtrl.Controls.Add(this.lbl1);
             this.groupboxShutterCtrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupboxShutterCtrl.Location = new System.Drawing.Point(13, 349);
+            this.groupboxShutterCtrl.Location = new System.Drawing.Point(12, 322);
             this.groupboxShutterCtrl.Name = "groupboxShutterCtrl";
             this.groupboxShutterCtrl.Size = new System.Drawing.Size(233, 117);
             this.groupboxShutterCtrl.TabIndex = 28;
@@ -492,7 +492,7 @@ namespace CalibBeamCtrl
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(257, 478);
+            this.ClientSize = new System.Drawing.Size(259, 451);
             this.Controls.Add(this.groupboxLogfile);
             this.Controls.Add(this.groupboxComms);
             this.Controls.Add(this.groupboxConfig);
