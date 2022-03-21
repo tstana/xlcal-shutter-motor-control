@@ -135,6 +135,38 @@ namespace xlcal_shutter_motor_control
             Thread.Sleep(500);
         }
 
+        private void Log(string s)
+        {
+            if (checkboxUseLogfile.Checked)
+            {
+                try
+                {
+                    using (StreamWriter w =
+                        File.AppendText(txtboxLogfile.Text))
+                    {
+                        DateTime utc = DateTime.UtcNow;
+                        w.WriteLine(utc.ToString("yyyy-MM-dd HH:mm:ss") +
+                            " :: " + s);
+                    }
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    MessageBox.Show("Cannot open " + txtboxLogfile.Text +
+                        " for append!",
+                        "Unauthorized Access Exception",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                catch (Exception excep)
+                {
+                    MessageBox.Show(excep.Message,
+                        "Other Exception",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+        }
+
         private uint ToEncoderPos(decimal angle)
         {
             return (uint)(NumEncoderPulsesPerRevolution * angle / 360);
@@ -199,8 +231,8 @@ namespace xlcal_shutter_motor_control
             }
 
             port.Write("/1z0R\r");
-
             motorZeroPosFound = true;
+            Log("Set motor zero (vertical) position.");
         }
 
         private void btnStartStopControl_Click(object sender, EventArgs e)
@@ -228,6 +260,7 @@ namespace xlcal_shutter_motor_control
 
             if (!timerMotorControl.Enabled)
             {
+                Log("Starting motor control.");
                 btnStartStopControl.Text = "Stop";
                 beamOffTime = spbOffTimeMins.Value * 60 + spbOffTimeSec.Value;
                 seconds = 0;
@@ -235,6 +268,7 @@ namespace xlcal_shutter_motor_control
             }
             else
             {
+                Log("Stopping motor control.");
                 btnStartStopControl.Text = "Start";
                 timerMotorControl.Enabled = false;
                 pbarTimeElapsed.Value = 0;
@@ -256,6 +290,7 @@ namespace xlcal_shutter_motor_control
                     beamOn = true;
                     labelShutterStatus.Text = "ON";
                     labelShutterStatus.BackColor = Color.DarkGreen;
+                    Log("Beam ON!");
                     beamOnTime = spbOnTimeMins.Value * 60 + spbOnTimeSec.Value;
                     seconds = 0;
                 }
@@ -271,6 +306,7 @@ namespace xlcal_shutter_motor_control
                     beamOn = false;
                     labelShutterStatus.Text = "OFF";
                     labelShutterStatus.BackColor = Color.Red;
+                    Log("Beam OFF!");
                     beamOffTime = spbOffTimeMins.Value * 60 + spbOffTimeSec.Value;
                     seconds = 0;
                 }
