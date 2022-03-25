@@ -148,13 +148,13 @@ namespace CalibBeamCtrl
             // - Set velocity in microsteps per sec. ("/1V...")
             // - Set the encoder conversion ratio ("/1aE...")
             port.Write("/1j" + NumMicrostepsPerStep.ToString() + "R\r");
-            Thread.Sleep(500);
+            Thread.Sleep(100);
             port.Write("/1V" + spbVelocity.Value.ToString() + "R\r");
-            Thread.Sleep(500);
+            Thread.Sleep(100);
             port.Write("/1aE" +
                 ((NumMotorStepsPerRevolution / NumEncoderPulsesPerRevolution) * 1000).ToString() +
                 "R\r");
-            Thread.Sleep(500);
+            Thread.Sleep(100);
         }
 
 
