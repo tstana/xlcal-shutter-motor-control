@@ -48,6 +48,23 @@ namespace CalibBeamCtrl
                 "set as motor's zero position.");
             tooltip.SetToolTip(btnOpenLogfile, "Open existing log file.");
             tooltip.SetToolTip(btnNewLogfile, "Create new log file.");
+            tooltip.SetToolTip(spbVelocity, "Velocity control in microsteps " +
+                "per second." +
+                Environment.NewLine +
+                Environment.NewLine +
+                "The default value for this setting should normally not be " +
+                "changed and was obtained by trial and error at KTH. A too " +
+                "high value would cause the motor to \"drop\" the " +
+                "shutter due to its weight, while a too low value would not " +
+                "be able to move the shutter." +
+                Environment.NewLine +
+                Environment.NewLine +
+                "A higher or lower value may need to be configured if the " +
+                "position of the shutter is changed on the motor axle. A " +
+                "recommendation would be to try small increments or " +
+                "decrements when attempting to find a new velocity for the " +
+                "motor movement."
+                );
 
             txtboxLogfile.Enabled = checkboxUseLogfile.Checked;
             btnOpenLogfile.Enabled = checkboxUseLogfile.Checked;
@@ -132,7 +149,7 @@ namespace CalibBeamCtrl
             // - Set the encoder conversion ratio ("/1aE...")
             port.Write("/1j" + NumMicrostepsPerStep.ToString() + "R\r");
             Thread.Sleep(500);
-            port.Write("/1V" + "4000" + "R\r");
+            port.Write("/1V" + spbVelocity.Value.ToString() + "R\r");
             Thread.Sleep(500);
             port.Write("/1aE" +
                 ((NumMotorStepsPerRevolution / NumEncoderPulsesPerRevolution) * 1000).ToString() +
@@ -304,6 +321,21 @@ namespace CalibBeamCtrl
 
             port.Write("/1D" + ToEncoderPos(spbRotationAngle.Value).ToString()
                 + "R\r");
+        }
+        private void spbVelocity_ValueChanged(object sender, EventArgs e)
+        {
+            if (!port.IsOpen)
+            {
+                MessageBox.Show("Please connect to motor driver board first!",
+                    "Serial port not open",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            Log("Setting velocity to " + spbVelocity.Value.ToString() +
+                " microsteps per second.");
+            port.Write("/1V" + spbVelocity.Value.ToString() + "R\r");
         }
 
         private void btnStopMotor_Click(object sender, EventArgs e)

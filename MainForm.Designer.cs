@@ -33,6 +33,8 @@ namespace CalibBeamCtrl
             this.spbRotationAngle = new System.Windows.Forms.NumericUpDown();
             this.btnRotateCW = new System.Windows.Forms.Button();
             this.groupboxConfig = new System.Windows.Forms.GroupBox();
+            this.lblVelocity = new System.Windows.Forms.Label();
+            this.spbVelocity = new System.Windows.Forms.NumericUpDown();
             this.btnRotateCCW = new System.Windows.Forms.Button();
             this.btnStopMotor = new System.Windows.Forms.Button();
             this.btnSetZeroPos = new System.Windows.Forms.Button();
@@ -64,6 +66,7 @@ namespace CalibBeamCtrl
             this.btnNewLogfile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.spbRotationAngle)).BeginInit();
             this.groupboxConfig.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spbVelocity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spbOnTimeSec)).BeginInit();
             this.groupboxComms.SuspendLayout();
             this.groupboxShutterCtrl.SuspendLayout();
@@ -121,6 +124,8 @@ namespace CalibBeamCtrl
             // 
             // groupboxConfig
             // 
+            this.groupboxConfig.Controls.Add(this.lblVelocity);
+            this.groupboxConfig.Controls.Add(this.spbVelocity);
             this.groupboxConfig.Controls.Add(this.btnRotateCCW);
             this.groupboxConfig.Controls.Add(this.btnStopMotor);
             this.groupboxConfig.Controls.Add(this.btnSetZeroPos);
@@ -133,6 +138,40 @@ namespace CalibBeamCtrl
             this.groupboxConfig.TabIndex = 255;
             this.groupboxConfig.TabStop = false;
             this.groupboxConfig.Text = "Configure Motor Positions";
+            // 
+            // lblVelocity
+            // 
+            this.lblVelocity.AutoSize = true;
+            this.lblVelocity.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVelocity.Location = new System.Drawing.Point(5, 67);
+            this.lblVelocity.Name = "lblVelocity";
+            this.lblVelocity.Size = new System.Drawing.Size(17, 13);
+            this.lblVelocity.TabIndex = 12;
+            this.lblVelocity.Text = "V:";
+            // 
+            // spbVelocity
+            // 
+            this.spbVelocity.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spbVelocity.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.spbVelocity.Location = new System.Drawing.Point(28, 65);
+            this.spbVelocity.Maximum = new decimal(new int[] {
+            8000,
+            0,
+            0,
+            0});
+            this.spbVelocity.Name = "spbVelocity";
+            this.spbVelocity.Size = new System.Drawing.Size(48, 20);
+            this.spbVelocity.TabIndex = 11;
+            this.spbVelocity.Value = new decimal(new int[] {
+            6000,
+            0,
+            0,
+            0});
+            this.spbVelocity.ValueChanged += new System.EventHandler(this.spbVelocity_ValueChanged);
             // 
             // btnRotateCCW
             // 
@@ -465,6 +504,7 @@ namespace CalibBeamCtrl
             this.btnOpenLogfile.UseVisualStyleBackColor = true;
             this.btnOpenLogfile.Click += new System.EventHandler(this.btnOpenLogfile_Click);
             // 
+            // 
             // checkboxUseLogfile
             // 
             this.checkboxUseLogfile.AutoSize = true;
@@ -505,6 +545,8 @@ namespace CalibBeamCtrl
             this.Text = "Calib Beam Ctrl";
             ((System.ComponentModel.ISupportInitialize)(this.spbRotationAngle)).EndInit();
             this.groupboxConfig.ResumeLayout(false);
+            this.groupboxConfig.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spbVelocity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spbOnTimeSec)).EndInit();
             this.groupboxComms.ResumeLayout(false);
             this.groupboxComms.PerformLayout();
@@ -553,6 +595,8 @@ namespace CalibBeamCtrl
         private System.Windows.Forms.TextBox txtboxLogfile;
         private System.Windows.Forms.CheckBox checkboxUseLogfile;
         private System.Windows.Forms.Button btnNewLogfile;
+        private System.Windows.Forms.Label lblVelocity;
+        private System.Windows.Forms.NumericUpDown spbVelocity;
     }
 }
 
