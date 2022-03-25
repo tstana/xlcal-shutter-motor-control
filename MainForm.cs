@@ -189,7 +189,9 @@ namespace CalibBeamCtrl
                         using (StreamWriter w =
                             File.AppendText(d.FileName))
                         {
-                            w.WriteLine("==========;========;==========");
+                            w.WriteLine();
+                            w.WriteLine();
+                            w.WriteLine("Date       ; Time      ; Action");
                         }
                         txtboxLogfile.Text = d.FileName;
                     }
@@ -231,7 +233,7 @@ namespace CalibBeamCtrl
                         using (StreamWriter w =
                             File.AppendText(d.FileName))
                         {
-                            w.WriteLine("==========;========;==========");
+                            w.WriteLine("Date       ; Time      ; Action");
                         }
                         txtboxLogfile.Text = d.FileName;
                     }
@@ -264,7 +266,8 @@ namespace CalibBeamCtrl
                         File.AppendText(txtboxLogfile.Text))
                     {
                         DateTime utc = DateTime.UtcNow;
-                        w.WriteLine(utc.ToString("yyyy-MM-dd;HH:mm:ss;") + s);
+                        w.WriteLine(utc.ToString("yyyy-MM-dd ; HH:mm:ss ; ") +
+                            s);
                     }
                 }
                 catch (UnauthorizedAccessException)
