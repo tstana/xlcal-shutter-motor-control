@@ -59,15 +59,5 @@ namespace CalibBeamCtrl.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap xcalibur {
-            get {
-                object obj = ResourceManager.GetObject("xcalibur", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

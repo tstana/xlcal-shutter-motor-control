@@ -31,9 +31,6 @@ namespace CalibBeamCtrl
         {
             InitializeComponent();
 
-            Bitmap bmp = Properties.Resources.xcalibur;
-            this.Icon = Icon.FromHandle(bmp.GetHicon());
-
             port = new SerialPort();
             port.BaudRate = 9600;
 

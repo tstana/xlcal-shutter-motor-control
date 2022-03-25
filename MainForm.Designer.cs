@@ -29,6 +29,7 @@ namespace CalibBeamCtrl
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.timerMotorControl = new System.Windows.Forms.Timer(this.components);
             this.spbRotationAngle = new System.Windows.Forms.NumericUpDown();
             this.btnRotateCW = new System.Windows.Forms.Button();
@@ -504,7 +505,6 @@ namespace CalibBeamCtrl
             this.btnOpenLogfile.UseVisualStyleBackColor = true;
             this.btnOpenLogfile.Click += new System.EventHandler(this.btnOpenLogfile_Click);
             // 
-            // 
             // checkboxUseLogfile
             // 
             this.checkboxUseLogfile.AutoSize = true;
@@ -539,6 +539,7 @@ namespace CalibBeamCtrl
             this.Controls.Add(this.groupboxShutterCtrl);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "MainForm";
