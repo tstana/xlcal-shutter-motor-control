@@ -177,7 +177,7 @@ namespace CalibBeamCtrl
                 else
                     d.InitialDirectory = Path.GetTempPath();
                 d.Filter = "log files (*.log)|*.log|All files (*.*)|*.*";
-                d.FilterIndex = 2;
+                d.FilterIndex = 1;
 
                 if (d.ShowDialog() == DialogResult.OK)
                 {
@@ -188,7 +188,7 @@ namespace CalibBeamCtrl
                         {
                             w.WriteLine();
                             w.WriteLine();
-                            w.WriteLine("Date       ; Time      ; Action");
+                            w.WriteLine("Date       ; Time     ; Action");
                         }
                         txtboxLogfile.Text = d.FileName;
                     }
@@ -230,7 +230,7 @@ namespace CalibBeamCtrl
                         using (StreamWriter w =
                             File.AppendText(d.FileName))
                         {
-                            w.WriteLine("Date       ; Time      ; Action");
+                            w.WriteLine("Date       ; Time     ; Action");
                         }
                         txtboxLogfile.Text = d.FileName;
                     }
