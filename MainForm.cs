@@ -366,8 +366,13 @@ namespace CalibBeamCtrl
             port.Write("/1z0R\r");
             motorZeroPosFound = true;
             Log("Set motor zero (vertical) position.");
+            
             // Can no longer rotate CCW (negative) from zero, so:
             btnRotateCCW.Enabled = false;
+
+            // Motor set to zero, thus shutter is vertical, thus beam is off:
+            labelShutterStatus.Text = "OFF";
+            labelShutterStatus.BackColor = Color.Red;
         }
 
         private void btnStartStopControl_Click(object sender, EventArgs e)
