@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("xlcal-shutter-motor-control")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Calib Beam Ctrl")]
+[assembly: AssemblyDescription("Calibration Beam Control program to be used for XL-Calibur calibration")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("xlcal-shutter-motor-control")]
+[assembly: AssemblyCompany("KTH Royal Institute of Technology")]
+[assembly: AssemblyProduct("Calib Beam Ctrl")]
 [assembly: AssemblyCopyright("Copyright ©Theodor Stana 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
