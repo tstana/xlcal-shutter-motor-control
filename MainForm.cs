@@ -334,6 +334,8 @@ namespace CalibBeamCtrl
             port.Write("/1z0R\r");
             motorZeroPosFound = true;
             Log("Set motor zero (vertical) position.");
+            // Can no longer rotate CCW (negative) from zero, so:
+            btnRotateCCW.Enabled = false;
         }
 
         private void btnStartStopControl_Click(object sender, EventArgs e)
