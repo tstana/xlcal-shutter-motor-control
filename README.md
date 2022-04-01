@@ -25,11 +25,16 @@ this application can work with.
 # System Requirements
 
 - Windows: Tested on Windows 10, but should work on Windows 11 (or earlier)
-- .NET **TODO**
+- [.NET v4.6.1](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net461)
+- Stepper motor (several available in a cardboard box containing several
+  motors and motor driver boards)
 - Motor driver used with this version of the app:
-  - **TODO**
-  - RS-485 to RS-232 converter
-  - USB to Serial Port converter
+  - [EZHR17EN](http://www.allmotion.com/EZHR17ENDescription.htm)
+  - RS-485 to RS-232 converter (available in the cardboard box containing
+    several motors and motor driver boards)
+  - Standard USB to Serial Port converter
+- Power supply for the motor driver board, e.g., 24V wall-wart power supply
+  or a configurable bench-top power supply.
 
 # User Guide
 
