@@ -40,12 +40,31 @@ this application can work with.
 
 ## Installing CalibBeamCtrl
 
-- Link to installer
-- Local link to Setup Project sub-sec
+Before the program can be used, it needs to be installed locally on Windows.
+
+Follow these steps to install `CalibBeamCtrl`:
+
+1. Download the [installer file](https://www.dropbox.com/s/qovgwud9kwxqwqf/CalibBeamCtrl.msi?dl=0)
+2. Run the downloaded MSI file in administrator mode.
+4. Choose the folder to install to, if the default one is not appropriate.
+5. After the installation completes, navigate to the installation folder.
+6. Create a shortcut of the `CalibBeamCtrl.exe` to the computer's Desktop,
+   so it can be easily run.
+
+Note that the program can also be run directly from Visual Studio, if an
+installation of it is available. The installed version is of course the
+most out-of-the box solution available -- and is linked to a defined release
+of the program.
 
 ## Preparing the setup
 
-- Equipment needed (pics?)
+See the [EZStepper Start Guide](http://www.allmotion.com/New%20PDF's/EZ17_23/EZ_17_23%20EZ%20Start.pdf)
+for details on the setup.
+
+For XL-Calibur, the motor to be connected to the EZHR17EN motor driver is
+placed inside the calibration setup aluminum cage:
+
+**------TODO------: Add picture(s)!**
 
 ## Running CalibBeamCtrl
 
@@ -59,6 +78,8 @@ this application can work with.
   - Rotate to new position
   - "Set Zero Pos" again
   - If drops again: Lower velocity (4000 a good value) and try again
+
+- recreate steps above using TeraTerm...
 
 # Developer Guide
 
