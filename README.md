@@ -35,8 +35,10 @@ this application can work with.
   - RS-485 to RS-232 converter (available in the cardboard box containing
     several motors and motor driver boards)
   - Standard USB to Serial Port converter
-- Power supply for the motor driver board, e.g., 24V wall-wart power supply
-  or a configurable bench-top power supply.
+- Power supply for the motor driver board:
+  - 24V wall-wart power supply or a configurable bench-top power supply
+  - Voltage range for the supply: 12-40 V
+  - Current consumption of the test setup: ~0.8 A
 
 # User Guide
 
@@ -70,7 +72,26 @@ placed inside the calibration setup aluminum cage:
 
 ## Running CalibBeamCtrl
 
-- steps to run it
+1. Apply power to the calibration setup, either from the wall-wart power supply
+   or the bench-top power supply.
+   - **NOTE:** The EZHR17EN motor driver should be powered with between 12 V and
+     40 V! Ensure the power supply can provide at least 1 A of power, the motor
+     alone needs about 600 mA!
+2. Start the `CalibBeamCtrl` program, e.g., using the Desktop shortcut.
+3. Click the **COM Port** drop-down, select the port of the USB to Serial converter
+   attached to the EZStepper motor driver and click the **Open** button.
+   **NOTE:** If there are multiple COM ports and you do not know which port is
+   connected to the EZStepper, do the following:
+   - Click the drop-down;
+   - Grab a glance of which ports appear in the list of COM ports;
+   - Disconnect the USB to Serial converter of the EZStepper motor driver;
+   - Click the drop-down again;
+   - A COM port should have dissapeared;
+   - Re-connect the USB to Serial converter;
+   - Click the drop-down again;
+   - A new COM port should have appeared. This is the COM port of the EZStepper.
+
+     <img src="images/CalibBeamCtrl-OpenPort.PNG">
 
 ## Troubleshooting
 
