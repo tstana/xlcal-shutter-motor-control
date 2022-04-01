@@ -10,6 +10,8 @@ potentially even use as a driver) when calibrating other instruments.
 See [System Requirements](#system-requirements) for more details on the setup
 this application can work with.
 
+<img src="images/CalibBeamCtrl.PNG">
+
 # Table of Contents
 
 - [System Requirements](#system-requirements)
