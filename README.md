@@ -48,7 +48,7 @@ Before the program can be used, it needs to be installed locally on Windows.
 
 Follow these steps to install `CalibBeamCtrl`:
 
-1. Download the [installer file](https://www.dropbox.com/s/qovgwud9kwxqwqf/CalibBeamCtrl.msi?dl=0)
+1. Download the [installer file](https://www.dropbox.com/s/qovgwud9kwxqwqf/CalibBeamCtrl.msi?dl=0).
 2. Run the downloaded MSI file in administrator mode.
 4. Choose the folder to install to, if the default one is not appropriate.
 5. After the installation completes, navigate to the installation folder.
@@ -170,14 +170,62 @@ vertical (covering the radioactive source) and click
 
 ## Troubleshooting
 
-- motor "dropping"
-  - Might happen if velocity is too high
-  - "Set Zero Pos" first
-  - Rotate to new position
-  - "Set Zero Pos" again
-  - If drops again: Lower velocity (4000 a good value) and try again
+### Motor "dropping"
 
-- recreate steps above using TeraTerm...
+Cases have been observed of the motor controller losing control of the motor's
+position ("dropping" the motor). This is understood to be due to the motor
+control velocity being too high, but it can also be that the weight
+distribution is not tolerable by the motor controller.
+
+The steps to perform in case this problem appears are:
+
+1. After the shutter has finished spinning, set the zero position using
+   the button under **Configure Motor Positions**.
+2. Rotate it again to the vertical (zero position) using the rotate
+   clockwise and counter-clockwise buttons, as applicable.
+3. Set the motor's zero position again using the button.
+4. If the motor "drops" again, decrease the velocity via the control
+   under **Configure Motor Positions**.
+   
+   <img src="images/CalibBeamCtrl-Velocity.PNG">
+   
+   - Notes:
+     - Too low velocity values will result in the motor controller not
+       being able to move the shutter at all
+     - A good value to try first is **4000**. After this, you can try
+       increasing if you like, but there is no great difference between
+       hundreds of velocity units.
+     - The unit for velocity is motor microsteps per second -- very
+       abstract.
+
+### Sending commands via serial port software
+
+If worse comes to worst, you can always try to manually control the
+motor controller. The `CalibBeamCtrl` program essentially sends the
+commands one can send via serial port software to achieve the motor
+control.
+
+The command set for the EZStepper motor driver can be found
+at this link:
+- http://www.allmotion.com/PDF_Datasheets/Command_Set_EZHR17EN.pdf
+
+Notes:
+- Ensure you enable character echoing on the serial port software,
+  so you get feedback of the characters sent to the EZStepper. The
+  EZStepper itself does no echoing of characters it receives.
+- The baud rate for communication is **9600 baud**.
+- The EZHR17EN is a bit weird in its behaviour: Although the
+  firmware version is listed to be 3.75 (**_CONFIRM!!_**), it seems
+  to accept some commands that are only available in later versions,
+  according to the command set linked above, but some of the
+  commands of later versions are not available on the EZStepper.
+
+TODO:
+- how-to on using TeraTerm for sending commands
+- commands to achieve the troubleshooting above
+- include the encoder setup commands!
+- example of `\1n8R` command not working...
+- get firmware version example
 
 # Developer Guide
 
