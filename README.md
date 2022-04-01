@@ -80,18 +80,91 @@ placed inside the calibration setup aluminum cage:
 2. Start the `CalibBeamCtrl` program, e.g., using the Desktop shortcut.
 3. Click the **COM Port** drop-down, select the port of the USB to Serial converter
    attached to the EZStepper motor driver and click the **Open** button.
-   **NOTE:** If there are multiple COM ports and you do not know which port is
-   connected to the EZStepper, do the following:
-   - Click the drop-down;
-   - Grab a glance of which ports appear in the list of COM ports;
-   - Disconnect the USB to Serial converter of the EZStepper motor driver;
-   - Click the drop-down again;
-   - A COM port should have dissapeared;
-   - Re-connect the USB to Serial converter;
-   - Click the drop-down again;
-   - A new COM port should have appeared. This is the COM port of the EZStepper.
 
-     <img src="images/CalibBeamCtrl-OpenPort.PNG">
+   <img src="images/CalibBeamCtrl-OpenPort.PNG">
+       
+   - **NOTE:** If there are multiple COM ports and you do not know which port is
+   connected to the EZStepper, do the following:
+     - Click the drop-down;
+     - Grab a glance of which ports appear in the list of COM ports;
+     - Disconnect the USB to Serial converter of the EZStepper motor driver;
+     - Click the drop-down again;
+     - A COM port should have dissapeared;
+     - Re-connect the USB to Serial converter;
+     - Click the drop-down again;
+     - A new COM port should have appeared. This is the COM port of the EZStepper.
+
+4. Confirm that the connection status lights green:
+
+   <img src="images/CalibBeamCtrl-ConnOpen.PNG">
+
+5. If you wish to have a log of the steps performed by the program, use the
+   check-box under the **Log File** group and the **New...** button to create a new
+   log file, or the **Open...** button to open an existing file. In both cases,
+   a window opens to select the file to be written to. The file selected is open in
+   _append_ mode, i.e., contents will be added to the end of the file.
+   
+   <img src="images/CalibBeamCtrl-Logfile.PNG">
+   
+6. Looking _into_ the shutter, calculate the approximate number of degrees it needs
+   to rotate counter-clockwise (right) so that it covers the radioactive source:
+   
+   <img src="images/CalibSetupStartup.jpg" width="60%">
+   
+7. Type in the angle in degrees in the rotation angle control and click the
+   **Rotate >>** button:
+   
+   <img src="images/CalibBeamCtrl-RotationControls.PNG">
+   
+8. Tweak the position using the rotation controls until a vertical position
+   for the shutter has been found, where it covers the radioactive source:
+   
+   - The **Rotate <<** button is enabled and can be used after the
+     motor has been rotated clockwise at least once. Should the rotation
+     previously configure go beyound the vertical position, you can rotate
+     the shutter counter-clockwise too.
+   - The **Stop** button under **Configure Motor Positions** can also be used
+     to stop the motor mid-motion.
+
+   <img src="images/CalibSetupVert.jpg" width="60%">
+   
+9. Once the vertical position of the shutter has been found, click the
+   **Set zero position (vertical)** button:
+   
+   <img src="images/CalibBeamCtrl-SetZeroPos.PNG">
+
+10. Use the controls under the **Calibration Beam** group to select shutter _on_
+    and _off_ times. You can configure number of minutes and seconds as desired:
+   
+   <img src="images/CalibBeamCtrl-BeamCtrl.PNG">
+   
+   - Notes:
+     - The TAB key on the keyboard can be used to quickly switch between
+       controls;
+     - The minimum time that the shutter can be both _on_ or _off_ is 10
+       seconds; 
+
+11. Click the **Start** button to start the motor control. The program starts
+    counting the _off_ time; the progress bar will show the percentage of time
+    elapsed:
+    
+    <img src="images/CalibBeamCtrl-RunningBeamOff.PNG">
+
+12. After the _off_ time you selected elapses, the shutter moves 90 degrees to
+    expose the radioactive source. The beam status label also colors green to
+    indicate the beam is _on_ (shutter is _off_). The program will count the
+    _on_ time before moving the shutter to the _off_ (beam _on_) position. The
+    progress bar will again show the percentage of time elapsed in the progress
+    bar:
+    
+    <img src="images/CalibBeamCtrl-RunningBeamOn.PNG">
+    
+13. After you are done with the calibration, hit the **Stop** button under
+    **Calibration Beam** to stop the motor control.
+    
+**NOTE:** If you intend to run the motor control again, make sure the shutter is
+vertical (covering the radioactive source) and click
+**Set zero position (vertical)** before re-starting the motor control.
 
 ## Troubleshooting
 
