@@ -107,7 +107,7 @@ placed inside the calibration setup aluminum cage:
    <img src="images/CalibBeamCtrl-Logfile.PNG">
    
 6. Looking _into_ the shutter, calculate the approximate number of degrees it needs
-   to rotate counter-clockwise (right) so that it covers the radioactive source:
+   to rotate clockwise (right) so that it covers the radioactive source:
    
    <img src="images/CalibSetupStartup.jpg" width="60%">
    
@@ -119,15 +119,16 @@ placed inside the calibration setup aluminum cage:
 8. Tweak the position using the rotation controls until a vertical position
    for the shutter has been found, where it covers the radioactive source:
    
-   - The **Rotate <<** button is enabled and can be used after the
-     motor has been rotated clockwise at least once. Should the rotation
-     previously configure go beyound the vertical position, you can rotate
-     the shutter counter-clockwise too.
-   - The **Stop** button under **Configure Motor Positions** can also be used
-     to stop the motor mid-motion.
-
-   <img src="images/CalibSetupVert.jpg" width="60%">
+   <img src="images/CalibSetupVertical.jpg" width="60%">
    
+   - Notes:
+     - The **Rotate <<** button is enabled and can be used after the
+       motor has been rotated clockwise at least once. Should the rotation
+       previously configure go beyound the vertical position, you can rotate
+       the shutter counter-clockwise too.
+     - The **Stop** button under **Configure Motor Positions** can also be used
+       to stop the motor mid-motion.
+
 9. Once the vertical position of the shutter has been found, click the
    **Set zero position (vertical)** button:
    
@@ -136,26 +137,27 @@ placed inside the calibration setup aluminum cage:
 10. Use the controls under the **Calibration Beam** group to select shutter _on_
     and _off_ times. You can configure number of minutes and seconds as desired:
    
-   <img src="images/CalibBeamCtrl-BeamCtrl.PNG">
+    <img src="images/CalibBeamCtrl-BeamCtrl.PNG">
    
-   - Notes:
-     - The TAB key on the keyboard can be used to quickly switch between
-       controls;
-     - The minimum time that the shutter can be both _on_ or _off_ is 10
-       seconds; 
+    - Notes:
+      - The TAB key on the keyboard can be used to quickly switch between
+        controls;
+      - The minimum time that the shutter can be both _on_ or _off_ is 10
+        seconds; 
 
-11. Click the **Start** button to start the motor control. The program starts
-    counting the _off_ time; the progress bar will show the percentage of time
+11. Click the **Start** button to start the motor control. The **Start** button
+    changes into the **Stop** button and the program starts counting the
+    selected _off_ time. The progress bar will show the percentage of time
     elapsed:
     
     <img src="images/CalibBeamCtrl-RunningBeamOff.PNG">
 
-12. After the _off_ time you selected elapses, the shutter moves 90 degrees to
-    expose the radioactive source. The beam status label also colors green to
-    indicate the beam is _on_ (shutter is _off_). The program will count the
-    _on_ time before moving the shutter to the _off_ (beam _on_) position. The
-    progress bar will again show the percentage of time elapsed in the progress
-    bar:
+12. After the _off_ time you selected elapses, the shutter moves 90 degrees
+    clockwise to expose the radioactive source. The beam status label also
+    colors green to indicate the beam is _on_ (shutter is _off_). The program
+    will count the _on_ time before moving the shutter to the _off_ (beam
+    _on_) position. The progress bar will again show the percentage of time
+    elapsed in the progress bar:
     
     <img src="images/CalibBeamCtrl-RunningBeamOn.PNG">
     
