@@ -338,7 +338,7 @@ commands to the motor driver:
       been observed once to not take the `T` command
       without it being followed by the `R` command!
       
-14. Once the vertical position has been found, use
+13. Once the vertical position has been found, use
     the "set zero position" command, `z`:
     
     ```/1z0R<CR>```
@@ -359,22 +359,22 @@ To additionally try out the abstract-ness of the motor
 control driver, here is the process to to confirm that
 the "enable position correction" command does not work:
 
-13. Set the EZStepper in the position correction mode by
+14. Set the EZStepper in the position correction mode by
     issuing the `n8` command:
     
     ```/1n8R<CR>```
     
-14. Now, in theory, the motor should turn itself back to
+15. Now, in theory, the motor should turn itself back to
     the motor encoder position it was previously at, so
     let's set its zero position, whatever it is:
     
     ```/1z0R<CR>```
     
-15. Move it 90 degrees positive:
+16. Move it 90 degrees positive:
 
     ```/1P400R<CR>```
     
-16. Now, _manually_ shove the shutter and observe the
+17. Now, _manually_ move the shutter and observe the
     motor control... not doing anything. Were the
     position correction mode to work, the motor should
     have been moved until the motor controller reads the
