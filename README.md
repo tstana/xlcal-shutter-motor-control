@@ -20,6 +20,8 @@ this application can work with.
   * [Preparing the setup](#preparing-the-setup)
   * [Running CalibBeamCtrl](#running-calibbeamctrl)
   * [Troubleshooting](#troubleshooting)
+    + [Motor "dropping"](#motor-dropping)
+    + [Sending commands via serial port software](#sending-commands-via-serial-port-software)
 - [Developer Guide](#developer-guide)
   * [Main Project](#main-project)
   * [Setup Project](#setup-project)
@@ -220,12 +222,163 @@ Notes:
   according to the command set linked above, but some of the
   commands of later versions are not available on the EZStepper.
 
-TODO:
-- how-to on using TeraTerm for sending commands
-- commands to achieve the troubleshooting above
-- include the encoder setup commands!
-- example of `\1n8R` command not working...
-- get firmware version example
+To use [TeraTerm](https://tera-term.en.lo4d.com/windows) for sending
+commands to the motor driver:
+
+1. Make sure that the USB to Serial converter attached to the
+   EZStepper motor controller is connected to the PC and that no
+   other programs use this serial port (e.g., click the **Close**
+   button under `CalibBeamCtrl` if it has the port open).
+2. Open TeraTerm. In the prompt that appears, select the **Serial**
+   radio button and use the drop-down to select the port of the
+   EZStepper motor driver.
+3. Click **OK** to connect to the port.
+4. In the TeraTerm window, click the **Setup > Terminal...** menu
+   item.
+5. Tick the **Local echo** checkbox to enable the echoing of
+   characters sent to the EZStepper.
+6. Type the following command to get the firmware version of the
+   EZStepper:
+   
+   ```/1&<CR>```
+   
+   - **NOTE:** `<CR>` is the carriage return character. This
+     basically means "hit Enter on your keyboard".
+     
+   **<!!!SCREENSHOT!!!>**
+   
+7. Configure the encoder ration via the following command:
+   
+   ```/1aE64000R<CR>```
+   
+   - **Notes:**
+     - `aE` is the "set encoder ratio" command. This is one of
+       the commands that _does not appear_ in the Command Set
+       document linked above and according to the document
+       should not work with this version of the firmware.
+       Abstractly enough, though, it does. The command is
+       described in Appendix 8 of the Command Set document.
+     - The _64000_ value is obtained as follows:
+       - The motor we have is the
+         [3509V-18](https://www.dropbox.com/s/tcauprjd3846ymo/3509V-motor-datasheet.pdf?dl=0),
+         a 0.9 degree step motor, i.e., 400 turns per full
+         360-degree rotation;
+       - The motor driver starts at default at 256 microsteps
+         per step (can be configured via the `j` command)
+       - The encoder we have is an E2 relative optical
+         encoder with 400 cycles per revolution and
+         1600 pulses per revoltion (4 pulses for every
+         cycle);
+       - Substitute the above values into the formula
+         in Appendix 8 of the Command Set document and:
+         
+         _aE = ((400x256))/1600 x 1000 = 64000_
+     - After the `aE` command is sent, the motor driver
+       expects encoder ticks instead of motor microsteps
+       as the argument for the `P`, `D` and `A` commands
+       (and maybe others too).
+         
+8. Configure the velocity to `5000` microsteps per second
+   by sending the EZStepper the following command:
+   
+   ```/1V5000R<CR>```
+   
+   - **Note:** Although the Command Set document states
+     that the velocity `V` command should be sent in
+     encoder ticks rather than microsteps per second once
+     the `aE` command has been sent, this is not the case.
+   
+9. Rotate the motor 90 degrees in the _positive_
+   direction, _clockwise_ when looking _into_ the shutter,
+   by using the `P` command as follows:
+   
+   ```/1P400R<CR>```
+   
+   - **Notes:**
+     - _400/1600 = 1/4 * 360 deg. = 90 deg._
+     - General formula for calculating degrees to encoder
+       ticks is:
+       
+       _1600 * angle/360_
+
+10. Rotate the motor 45 degrees in the _negative_ direction,
+    i.e., _counter-clockwise_ when looking _into_ the
+    shutter, by sending the following command:
+    
+    ```/1D200R<CR>```
+    
+    - **Notes:**
+      - _200/1600_ = 1/8 * 360 deg. = 45 deg._
+      - Because of the way in which the motor driver works,
+        you can not turn the motor negative to more than 0
+        degrees. That is to say, you cannot use the `D`
+        command past the motor's zero position, as
+        interpreted/tracked by the motor driver.
+
+11. Use the `P` and `D` commands to set the shutter
+    vertical. The `A` command can also be used to set
+    an absolute position, e.g.:
+    
+    ```/1A2000R<CR>```
+    
+    - **Notes:**
+      - This moves the motor more than one revolution
+      - The `A` command can not be used with negative
+        numbers with our firmware version, e.g.
+        `/1A-500R<CR>` does not work.
+
+12. **(Optional)** Terminate a motor movement by the
+    `T` command:
+    
+    ```/1TR<CR>```
+    
+    - **Note:** Even though the Command Set document
+      states the `T` command should not be followed by
+      an `R` ("execute") command, the motor driver has
+      been observed once to not take the `T` command
+      without it being followed by the `R` command!
+      
+14. Once the vertical position has been found, use
+    the "set zero position" command, `z`:
+    
+    ```/1z0R<CR>```
+    
+    - **Notes:**
+      - This is a _non-capital_ `z`. The capital `Z`
+        command turns the motor to what it thinks is
+        its zero position, which for some reason does
+        not necessarily take into account the encoder
+        value.
+      - The `0` argument to the `z` command tells the
+        motor driver this is the motor's zero position.
+        If you were to send `/1z400R<CR>` instead, it
+        would tell the motor driver this is the motor's
+        400-encoder count position, i.e. 90 degrees.
+
+To additionally try out the abstract-ness of the motor
+control driver, here is the process to to confirm that
+the "enable position correction" command does not work:
+
+13. Set the EZStepper in the position correction mode by
+    issuing the `n8` command:
+    
+    ```/1n8R<CR>```
+    
+14. Now, in theory, the motor should turn itself back to
+    the motor encoder position it was previously at, so
+    let's set its zero position, whatever it is:
+    
+    ```/1z0R<CR>```
+    
+15. Move it 90 degrees positive:
+
+    ```/1P400R<CR>```
+    
+16. Now, _manually_ shove the shutter and observe the
+    motor control... not doing anything. Were the
+    position correction mode to work, the motor should
+    have been moved until the motor controller reads the
+    correct position from the quadrature encoder.
 
 # Developer Guide
 
