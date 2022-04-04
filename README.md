@@ -49,6 +49,11 @@ this application can work with.
 
 Before the program can be used, it needs to be installed locally on Windows.
 
+Note that the program can also be run directly from Visual Studio, if an
+installation of it is available. The installed version is of course the
+most out-of-the box solution available -- and is linked to a defined release
+of the program.
+
 Follow these steps to install `CalibBeamCtrl`:
 
 1. Download the [installer file](https://www.dropbox.com/s/qovgwud9kwxqwqf/CalibBeamCtrl.msi?dl=0).
@@ -57,11 +62,6 @@ Follow these steps to install `CalibBeamCtrl`:
 5. After the installation completes, navigate to the installation folder.
 6. Create a shortcut of the `CalibBeamCtrl.exe` to the computer's Desktop,
    so it can be easily run.
-
-Note that the program can also be run directly from Visual Studio, if an
-installation of it is available. The installed version is of course the
-most out-of-the box solution available -- and is linked to a defined release
-of the program.
 
 ## Preparing the setup
 
