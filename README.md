@@ -1,4 +1,19 @@
-# Calibration Beam Control
+# Table of Contents
+
+- [Introduction](#introduction)
+- [System Requirements](#system-requirements)
+- [User Guide](#user-guide)
+  * [Installing CalibBeamCtrl](#installing-calibbeamctrl)
+  * [Preparing the setup](#preparing-the-setup)
+  * [Running CalibBeamCtrl](#running-calibbeamctrl)
+  * [Troubleshooting](#troubleshooting)
+    + [Shutter "dropping"](#shutter-dropping)
+    + [Sending commands via serial port software](#sending-commands-via-serial-port-software)
+- [Developer Guide](#developer-guide)
+  * [Main Project](#main-project)
+  * [Setup Project](#setup-project)
+
+# Introduction
 
 The `Calib Beam Ctrl` program is a .NET application running under Windows
 meant to send commands to a motor driver board that controls the periodic
@@ -11,20 +26,6 @@ See [System Requirements](#system-requirements) for more details on the setup
 this application can work with.
 
 <img src="images/CalibBeamCtrl.PNG">
-
-# Table of Contents
-
-- [System Requirements](#system-requirements)
-- [User Guide](#user-guide)
-  * [Installing CalibBeamCtrl](#installing-calibbeamctrl)
-  * [Preparing the setup](#preparing-the-setup)
-  * [Running CalibBeamCtrl](#running-calibbeamctrl)
-  * [Troubleshooting](#troubleshooting)
-    + [Motor "dropping"](#motor-dropping)
-    + [Sending commands via serial port software](#sending-commands-via-serial-port-software)
-- [Developer Guide](#developer-guide)
-  * [Main Project](#main-project)
-  * [Setup Project](#setup-project)
 
 # System Requirements
 
@@ -172,10 +173,10 @@ vertical (covering the radioactive source) and click
 
 ## Troubleshooting
 
-### Motor "dropping"
+### Shutter "dropping"
 
 Cases have been observed of the motor controller losing control of the motor's
-position ("dropping" the motor). This is understood to be due to the motor
+position ("dropping" the shutter). This is understood to be due to the motor
 control velocity being too high, but it can also be that the weight
 distribution is not tolerable by the motor controller.
 
