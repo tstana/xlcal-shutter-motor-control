@@ -71,7 +71,7 @@ for details on the setup.
 For XL-Calibur, the motor to be connected to the EZHR17EN motor driver is
 placed inside the calibration setup aluminum cage:
 
-<img src="images/CalibSetup.jpg" width="50%">
+<img src="images/CalibSetup.jpg" width="60%">
 
 ## Running CalibBeamCtrl
 
