@@ -70,7 +70,7 @@ for details on the setup.
 For XL-Calibur, the motor to be connected to the EZHR17EN motor driver is
 placed inside the calibration setup aluminum cage:
 
-<img src="images/CalibSetup.jpg">
+<img src="images/CalibSetup.jpg" width="50%">
 
 ## Running CalibBeamCtrl
 
@@ -308,7 +308,7 @@ commands to the motor driver:
     ```/1D200R<CR>```
     
     - **Notes:**
-      - _200/1600_ = 1/8 * 360 deg. = 45 deg._
+      - _200/1600 = 1/8 * 360 deg. = 45 deg._
       - Because of the way in which the motor driver works,
         you can not turn the motor negative to more than 0
         degrees. That is to say, you cannot use the `D`
@@ -445,7 +445,7 @@ The process for creating the setup project was:
 1. Right-click the solution in the VS Solution Explorer.
 2. Select **Add > New Project...**
 
-<img src="images/VS-AddNewProject.png">
+   <img src="images/VS-AddNewProject.png">
 
 3. In the window that appears, expand the **Other Projects**
    item in the list to the left side of the window and select
@@ -467,7 +467,7 @@ The process for creating the setup project was:
 7. Right-click the new setup project and click
    **Add > Project Output...**
    
-   <img src="images/VS-AddProjectOutput.PNG">
+   <img src="images/VS-AddProjectOutput.png">
 
 8. In the window that appears, make sure the main project
    whose output should be included in the installer
