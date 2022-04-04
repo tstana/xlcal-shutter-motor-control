@@ -382,7 +382,7 @@ the "enable position correction" command does not work:
 
 # Developer Guide
 
-## Main Project
+The solution
 
 The `CalibBeamCtrl` program is developed in C# using .NET and
 Visual Studio (VS). Both VS 2017 and 2019 have been used
@@ -390,6 +390,18 @@ interchangeably during development, so either can work, as can
 most likely newer versions of Visual Studio.
 
 - [Download VS 2019 from here](https://docs.microsoft.com/en-us/visualstudio/releases/2019/release-notes)
+
+The VS solution of the program comprises two projects:
+
+- The [main project](#main-project), consisting of the actual
+  C# code that is compiled to run the UI shown in the
+  sections above
+- The [setup project](#setup-project), which is
+  used to create the MSI installer file that can be used
+  to install the program on a system without having to install
+  VS or compile the software.
+
+## Main Project
 
 The main file of the project is `MainForm.cs`. The UI was
 designed using the VS Designer, which generates the code
@@ -413,8 +425,119 @@ Example: `btnRotateCW_Click`
   start typing to jump to certain functions.
 
   <img src="images/VS-FcnDropDown.PNG">
+  
+To compile and run the project:
+
+1. Select a run configuration, either **Release** or **Debug**
+   (**Debug** offers the capability of setting breakpoints);
+2. Press the **Start** ("_play_") button.
+
+<img src="images/VS-RunningCode.png">
 
 ## Setup Project
 
-- How created?
-- Steps to releasing a new version
+The setup project is used to create the `CalibBeamCtrl.msi`
+installer file that users can download from the
+[XL-Calibur KTH Dropbox](https://www.dropbox.com/s/qovgwud9kwxqwqf/CalibBeamCtrl.msi?dl=0).
+
+The process for creating the setup project was:
+
+1. Right-click the solution in the VS Solution Explorer.
+2. Select **Add > New Project...**
+
+<img src="images/VS-AddNewProject.png">
+
+3. In the window that appears, expand the **Other Projects**
+   item in the list to the left side of the window and select
+   **Setup Project**.
+   
+   <img src="images/VS-SetupProject.PNG">
+
+4. Give the project a name in the text box at the bottom (in
+   our case, I gave it the simple name "_Setup_")
+5. Open up the VS Configuration Manager by selecting the
+   **Build > Configuration Management...** menu item.
+6. In the Configuration Manager window that appears, make
+   sure the target project of the installer (here,
+   `CalibBeamCtrl`) is set to build in _Release_ mode and
+   that the _Build_ checkbox is ticked.
+   
+   <img src="images/VS-ConfigMgr.PNG">
+   
+7. Right-click the new setup project and click
+   **Add > Project Output...**
+   
+   <img src="images/VS-AddProjectOutput.PNG">
+
+8. In the window that appears, make sure the main project
+   whose output should be included in the installer
+   (here, `CalibBeamCtrl`) is selected, with the _Configuration_
+   drop-down set to **(Active)** and click **OK**.
+   
+   <img src="images/VS-AddProjectOutputWindow.PNG">
+
+9. Right-click any potentially unnecessary DLLs from the list
+   of _Detected Dependencies_ in the Solution Explorer and select
+   **Exclude** to ensure unnecessary DLLs do not appear in the
+   installation folder.
+
+   <img src="images/VS-ExcludeDLL.png">
+
+10. Double-click the **Primary output from _<ProjectName>_** in the
+    setup project, select the Application Folder and add any files,
+    such as icons (`xlcalibur.ico` in our case), to be copied over
+    to the application folder once the program has been installed.
+   
+    <img src="images/VS-AddIcon.PNG">
+   
+11. Select the setup project in the Solution Explorer and fill in
+    the relevant properties in the properties pane:
+    - _Product name_: Set to `CalibBeamCtrl`
+    - _Manufacturer_: I set this to `KTH`, but anything can be
+      added here. Usually the company name.
+      - **Note:** This field can _not_ be left empty!
+    - _Author_ -- optional
+    - _Description_ -- optional
+
+12. Right-click the setup project and click **Properties**.
+13. In the properties window that appears, rename the output
+    MSI file to something relevant, e.g., `CalibBeamCtrl.msi`:
+    
+    <img src="images/VS-SetupProjectProperties.PNG">
+    
+14. Right-click the setup project and click **Build**.
+15. Navigate to the _Release_ folder and double-click the
+    generated MSI file to install the program to your hard
+    drive.
+16. Test that the program works.
+17. Once the program and installer has been verified to work
+    correctly, copy the MSI file to a shareable location,
+    such as Dropbox in the case above.
+
+To release a new version of the program and update the
+setup file:
+
+1. Right-click the main project (here, `CalibBeamCtrl`)
+   and click **Properties**.
+2. In the project properties window that appears, under
+   the _Application_ menu, select **Assembly Information...**.
+3. Update the information under this window as needed,
+   but more importantly, increment the _Assembly version_.
+4. Back in the Solution Explorer, select the setup project
+   and update the _Version_ property in its properties pane.
+  
+   <img src="images/VS-SetupProjectVersion.PNG">
+
+5. _(Optional)_ Right-click the setup project, click
+   **Properties** and update the name of the MSI file to be
+   created if the version number of the new program should
+   appear in the MSI file, e.g., `CalibBeamCtrl-v2.0.0.msi`.
+6. Right-click the setup project and click **Build** to
+    build the setup project.
+7. Try installing the program via the MSI file (or
+    _right-click > Install_ in the VS Solution Explorer)
+8. Confirm the installed program works correctly.
+9. (Optional) Create a new tag under git with the new
+   release number, e.g.:
+ 
+   `git tag -a 2.0.0`
