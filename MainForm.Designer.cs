@@ -168,7 +168,7 @@ namespace CalibBeamCtrl
             this.spbVelocity.Size = new System.Drawing.Size(48, 20);
             this.spbVelocity.TabIndex = 11;
             this.spbVelocity.Value = new decimal(new int[] {
-            6000,
+            5000,
             0,
             0,
             0});

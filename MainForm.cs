@@ -176,6 +176,7 @@ namespace CalibBeamCtrl
                         Path.GetDirectoryName(txtboxLogfile.Text);
                 else
                     d.InitialDirectory = Path.GetTempPath();
+
                 d.Filter = "log files (*.log)|*.log|All files (*.*)|*.*";
                 d.FilterIndex = 1;
 
