@@ -384,12 +384,35 @@ the "enable position correction" command does not work:
 
 ## Main Project
 
-- Developed under VS 2019 _and_ 2017 -- any works, including probably
-  2022 & later!
-- code organization: Methods ordered according to UI elements, for
-  readability
-- Navigate to functions using drop-down in VS
-- Anything else mentioned in CitirocUI Developer Guide?
+The `CalibBeamCtrl` program is developed in C# using .NET and
+Visual Studio (VS). Both VS 2017 and 2019 have been used
+interchangeably during development, so either can work, as can
+most likely newer versions of Visual Studio.
+
+- [Download VS 2019 from here](https://docs.microsoft.com/en-us/visualstudio/releases/2019/release-notes)
+
+The main file of the project is `MainForm.cs`. The UI was
+designed using the VS Designer, which generates the code
+pertaining to UI elements in the file `MainForm.Designer.cs`.
+
+The event handlers within `MainForm.cs` are organized from
+top to bottom according to the UI elements, i.e., the event
+handler for the COM port drop-down is towards the top, followed
+by the event handler for the open port button, followed by
+event handlers for the logfile controls, etc.
+
+Event handlers are named according to VS naming conventions:
+
+`<controlName>_<Event>`
+
+Example: `btnRotateCW_Click`
+
+- **Tip:** You can use the function list drop-down in VS to
+  navigate to a certain function. Once you've clicked the
+  drop-down and moved the mouse inside the list, you can even
+  start typing to jump to certain functions.
+
+  <img src="images/VS-FcnDropDown.PNG">
 
 ## Setup Project
 
