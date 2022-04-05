@@ -39,9 +39,10 @@ this application can work with.
     several motors and motor driver boards)
   - Standard USB to Serial Port converter
 - Power supply for the motor driver board:
-  - 24V wall-wart power supply or a configurable bench-top power supply
+  - 24V/2A wall-wart power supply or a configurable bench-top power supply
   - Voltage range for the supply: 12-40 V
-  - Current consumption of the test setup: ~0.8 A
+  - Current consumption of the test setup: ~0.8 A @ 28 V
+    - **Note:** The current consumption will increase at lower voltages!
 
 # User Guide
 
@@ -77,8 +78,8 @@ placed inside the calibration setup aluminum cage:
 
 1. Apply power to the calibration setup, either from the wall-wart power supply
    or the bench-top power supply.
-   - **NOTE:** The EZHR17EN motor driver should be powered with between 12 V and
-     40 V! Ensure the power supply can provide at least 1 A of power, the motor
+   - **Note:** The EZHR17EN motor driver should be powered with between 12 V and
+     40 V! Ensure the power supply can provide at least 2 A of power, the motor
      alone needs about 600 mA!
 2. Start the `CalibBeamCtrl` program, e.g., using the Desktop shortcut.
 3. Click the **COM Port** drop-down, select the port of the USB to Serial converter
