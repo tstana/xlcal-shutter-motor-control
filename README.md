@@ -219,7 +219,7 @@ Notes:
   EZStepper itself does no echoing of characters it receives.
 - The baud rate for communication is **9600 baud**.
 - The EZHR17EN is a bit weird in its behaviour: Although the
-  firmware version is listed to be 3.75 (**_CONFIRM!!_**), it seems
+  firmware version is listed to be **3.85**, it seems
   to accept some commands that are only available in later versions,
   according to the command set linked above, but some of the
   commands of later versions are not available on the EZStepper.
@@ -239,6 +239,9 @@ commands to the motor driver:
    item.
 5. Tick the **Local echo** checkbox to enable the echoing of
    characters sent to the EZStepper.
+   
+   <img src="images/TeraTerm-LocalEcho.PNG">
+
 6. Type the following command to get the firmware version of the
    EZStepper:
    
@@ -247,7 +250,7 @@ commands to the motor driver:
    - **NOTE:** `<CR>` is the carriage return character. This
      basically means "hit Enter on your keyboard".
      
-   **<!!!SCREENSHOT!!!>**
+   <img src="images/TeraTerm-FirmwareCmd.PNG">
    
 7. Configure the encoder ration via the following command:
    
