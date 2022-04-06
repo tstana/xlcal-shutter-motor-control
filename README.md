@@ -2,6 +2,8 @@
 
 - [Introduction](#introduction)
 - [System Requirements](#system-requirements)
+  * [Hardware](#hardware)
+  * [Software](#software)
 - [User Guide](#user-guide)
   * [Installing CalibBeamCtrl](#installing-calibbeamctrl)
   * [Preparing the setup](#preparing-the-setup)
@@ -29,8 +31,7 @@ this application can work with.
 
 # System Requirements
 
-- Windows: Tested on Windows 10, but should work on Windows 11 (or earlier)
-- [.NET v4.6.1](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net461)
+## Hardware
 - Stepper motor (several available in a cardboard box containing several
   motors and motor driver boards)
 - Motor driver used with this version of the app:
@@ -39,10 +40,19 @@ this application can work with.
     several motors and motor driver boards)
   - Standard USB to Serial Port converter
 - Power supply for the motor driver board:
-  - 24V/2A wall-wart power supply or a configurable bench-top power supply
   - Voltage range for the supply: 12-40 V
-  - Current consumption of the test setup: ~0.8 A @ 28 V
-    - **Note:** The current consumption will increase at lower voltages!
+  - Max. observed current consumption of the test setup, during turn operation:
+    - ~180 mA @ 24 V
+    - ~330 mA @ 12 V
+    - **Note:** Current consumption may increase during motor turn operation,
+      if, e.g., velocity is increased! Select the current limit of the power
+      supply taking this into account!
+
+## Software
+- Windows: Tested on Windows 10, but should work on Windows 11 (or earlier)
+- [.NET v4.6.1](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net461)
+  - Tested also with .NET > 5.0.0 and works fine;
+  - May also work well with .NET versions < 4.6.1, as long as it is > 3.0.0.
 
 # User Guide
 
@@ -87,8 +97,8 @@ placed inside the calibration setup aluminum cage:
 
    <img src="images/CalibBeamCtrl-OpenPort.PNG">
        
-   - **NOTE:** If there are multiple COM ports and you do not know which port is
-   connected to the EZStepper, do the following:
+   - **Note:** Perform the following steps if there are multiple COM ports and you
+     do not know which port is connected to the EZStepper:
      - Click the drop-down;
      - Grab a glance of which ports appear in the list of COM ports;
      - Disconnect the USB to Serial converter of the EZStepper motor driver;
@@ -247,7 +257,7 @@ commands to the motor driver:
    
    ```/1&<CR>```
    
-   - **NOTE:** `<CR>` is the carriage return character. This
+   - **Note:** `<CR>` is the carriage return character. This
      basically means "hit Enter on your keyboard".
      
    <img src="images/TeraTerm-FirmwareCmd.PNG">
