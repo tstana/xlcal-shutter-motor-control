@@ -278,7 +278,11 @@ namespace CalibBeamCtrl
                 }
                 catch (Exception excep)
                 {
-                    MessageBox.Show(excep.Message,
+                    MessageBox.Show("Exception when trying to write to log" +
+                        "file:" +
+                        Environment.NewLine +
+                        Environment.NewLine + 
+                        excep.Message,
                         "Other Exception",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -404,6 +408,7 @@ namespace CalibBeamCtrl
                 Log("Starting motor control.");
                 btnStartStopControl.Text = "Stop";
                 beamOffTime = spbOffTimeMins.Value * 60 + spbOffTimeSec.Value;
+                beamOnTime = spbOnTimeMins.Value * 60 + spbOnTimeSec.Value;
                 seconds = 0;
                 timerMotorControl.Enabled = true;
             }
@@ -431,9 +436,9 @@ namespace CalibBeamCtrl
                     beamOn = true;
                     labelShutterStatus.Text = "ON";
                     labelShutterStatus.BackColor = Color.DarkGreen;
-                    Log("Beam ON!");
                     beamOnTime = spbOnTimeMins.Value * 60 + spbOnTimeSec.Value;
                     seconds = 0;
+                    Log("Beam ON!");
                 }
             }
             else
@@ -447,9 +452,9 @@ namespace CalibBeamCtrl
                     beamOn = false;
                     labelShutterStatus.Text = "OFF";
                     labelShutterStatus.BackColor = Color.Red;
-                    Log("Beam OFF!");
                     beamOffTime = spbOffTimeMins.Value * 60 + spbOffTimeSec.Value;
                     seconds = 0;
+                    Log("Beam OFF!");
                 }
             }
         }

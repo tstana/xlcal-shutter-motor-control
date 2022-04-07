@@ -484,7 +484,7 @@ namespace CalibBeamCtrl
             this.groupboxLogfile.Size = new System.Drawing.Size(233, 76);
             this.groupboxLogfile.TabIndex = 255;
             this.groupboxLogfile.TabStop = false;
-            this.groupboxLogfile.Text = "Log File";
+            this.groupboxLogfile.Text = "Logfile";
             // 
             // txtboxLogfile
             // 
